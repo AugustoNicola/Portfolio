@@ -2,8 +2,8 @@
   color: #fff;
   background: linear-gradient(
       to right,
-      rgba($themeClrPrimary, 0.8),
-      rgba($themeClrPrimary, 0.8)
+      rgba($gradientStart, 0.8),
+      rgba($gradientEnd, 0.8)
     ),
     url(../../assets/svg/common-bg.svg);
   background-position: center;
@@ -128,7 +128,23 @@
 .projects {
   &__row {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
+    @include respond(tab-land) {
+      &:nth-child(odd) {
+        grid-template-columns: 1.5fr 1fr;
+      }
+      
+      &:nth-child(even) {
+        grid-template-columns: 1fr 1.5fr;
+      }
+      &:nth-child(even) &-img-cont {
+        grid-column: 2 / 3;
+      }
+      &:nth-child(even) &-content {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+      }
+    }
+    
     grid-gap: 5rem;
     margin-bottom: 11rem;
 

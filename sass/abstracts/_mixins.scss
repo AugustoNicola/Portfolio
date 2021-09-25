@@ -26,7 +26,7 @@ Inside media queries 1em is always 16px i.e 1em = 16px at every screen size only
     } //900px
   }
   @if $breakpoint == tab-land {
-    @media only screen and (max-width: 75em) {
+    @media only screen and (min-width: 56.25em) {
       @content;
     } //1200px
   }
