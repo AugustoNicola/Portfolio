@@ -6,9 +6,21 @@
     margin-bottom: 1.5rem;
     margin-right: 1.5rem;
     font-size: 1.6rem;
-    background: rgba(#999, 0.2);
     border-radius: $commonBorderRadius;
     font-weight: 600;
     color: #777;
+    
+    background-image: linear-gradient(to right, rgba(#999, 0.2) 0%, rgba(#999, 0.2) 25%, rgba(#999, 0.2) 50%, #2B6FD5 75%, #4D51CE 100%);
+    background-size: 400% 400%;
+    background-repeat: no-repeat;
+    transition: background-position .65s, color .65s;
+    
+    &:hover {
+      cursor: pointer;
+      background-position: 100% 100%;
+      color: #ebebeb;
+    }
   }
+  
+  
 }

@@ -99,13 +99,19 @@
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.15);
   transition: transform .3s;
 
-  &:hover {
-    transform: translateY(-3px);
-  }
-
   &--bg {
     padding: 1.5rem 8rem;
     font-size: 2rem;
+    
+    background-image: linear-gradient(to right, #fff 0%, #fff 25%, #fff 50%, #6A2FC1 75%, #4855CF 100%);
+    background-size: 400% 400%;
+    background-repeat: no-repeat;
+    transition: background-position .4s, color .4s;
+    
+    &:hover {
+      background-position: 100% 100%;
+      color: #fff;
+    }
   }
   &--med {
     padding: 1.5rem 5rem;
@@ -113,8 +119,15 @@
   }
 
   &--theme {
-    background: $themeClrPrimary;
+    background-image: linear-gradient(to right, $themeClrPrimary 0%, $themeClrPrimary 25%, $themeClrPrimary 50%, #4855CF 75%, #6A2FC1 100%);
     color: #fff;
+    background-size: 400% 400%;
+    background-repeat: no-repeat;
+    transition: background-position .4s;
+    
+    &:hover {
+      background-position: 100% 100%;
+    }
   }
   &--theme-inv {
     color: $themeClrPrimary;

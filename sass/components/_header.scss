@@ -68,10 +68,11 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
-    transition: color .3s;
+    transition: all .3s;
 
     &:hover {
       color: $themeClrPrimary;
+      letter-spacing: .2rem;
     }
     @include respond(tab-port) {
       padding: 3rem 1.8rem;
