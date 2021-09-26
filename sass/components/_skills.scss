@@ -15,10 +15,28 @@
     background-repeat: no-repeat;
     transition: background-position .65s, color .65s;
     
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    & svg {
+      color: #777;
+      width: 2rem;
+      margin-right: 1rem;
+      transition: all .65s;
+    }
+    & p {
+      transition: all .65s;
+    }
+    
     &:hover {
       cursor: pointer;
       background-position: 100% 100%;
       color: #ebebeb;
+      
+      & svg, & p {
+        color: #ebebeb
+      }
     }
   }
   
