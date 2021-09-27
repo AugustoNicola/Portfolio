@@ -54,13 +54,26 @@
     font-size: 1.45rem;
     text-align: left;
     text-align: center;
-    a {
-      text-decoration: underline;
-      font-weight: bold;
-      margin-left: 2px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .7rem;
+    
+    .text {
+      a {
+        text-decoration: underline;
+        font-weight: bold;
+        margin-left: 2px;
+      }
     }
     @include respond(tab-port) {
       padding: 3.5rem 0;
+    }
+    
+    svg {
+      width: 2rem;
+      margin: auto 0;
     }
   }
 }
