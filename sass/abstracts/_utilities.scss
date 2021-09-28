@@ -128,13 +128,25 @@
     &:hover {
       background-position: 100% 100%;
     }
+    
+    &.disabled {
+      background-image: linear-gradient(to right, #cccccc 0%, #bbbbbb 100%);
+      cursor: not-allowed;
+    }
   }
   &--theme-inv {
-    color: $themeClrPrimary;
     background: #fff;
-    border: 2px solid $themeClrPrimary;
-    box-shadow: none;
     padding: calc(1.5rem - 2px) calc(5rem - 2px);
+    box-shadow: none;
+    
+    color: $themeClrPrimary;
+    border: 2px solid $themeClrPrimary;
+    transition: border .4s, color .4s;
+    
+    &:hover {
+      border: 2px solid #6A2FC1;
+      color: #6A2FC1;
+    }
   }
 }
 

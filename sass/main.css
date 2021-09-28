@@ -237,13 +237,26 @@ textarea {
   background-position: 100% 100%;
 }
 
+.btn--theme.disabled {
+  background-image: -webkit-gradient(linear, left top, right top, from(#cccccc), to(#bbbbbb));
+  background-image: linear-gradient(to right, #cccccc 0%, #bbbbbb 100%);
+  cursor: not-allowed;
+}
+
 .btn--theme-inv {
-  color: #2C83D2;
   background: #fff;
-  border: 2px solid #2C83D2;
+  padding: calc(1.5rem - 2px) calc(5rem - 2px);
   -webkit-box-shadow: none;
           box-shadow: none;
-  padding: calc(1.5rem - 2px) calc(5rem - 2px);
+  color: #2C83D2;
+  border: 2px solid #2C83D2;
+  -webkit-transition: border .4s, color .4s;
+  transition: border .4s, color .4s;
+}
+
+.btn--theme-inv:hover {
+  border: 2px solid #6A2FC1;
+  color: #6A2FC1;
 }
 
 .sec-pad {
@@ -376,11 +389,11 @@ textarea {
   text-align: center;
 }
 
-.about {
+.sobre_mi {
   background: #fafafa;
 }
 
-.about__content {
+.sobre_mi__content {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -389,26 +402,26 @@ textarea {
 }
 
 @media only screen and (max-width: 56.25em) {
-  .about__content {
+  .sobre_mi__content {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
     grid-gap: 8rem;
   }
 }
 
-.about__content-title {
+.sobre_mi__content-title {
   font-weight: 700;
   font-size: 2.8rem;
   margin-bottom: 3rem;
 }
 
 @media only screen and (max-width: 37.5em) {
-  .about__content-title {
+  .sobre_mi__content-title {
     font-size: 2.4rem;
   }
 }
 
-.about__content-details-para {
+.sobre_mi__content-details-para {
   font-size: 1.8rem;
   color: grey;
   max-width: 60rem;
@@ -416,16 +429,16 @@ textarea {
   margin-bottom: 1rem;
 }
 
-.about__content-details-para--hl {
+.sobre_mi__content-details-para--hl {
   font-weight: 700;
   margin: 0 3px;
 }
 
-.about__content-details-para:last-child {
+.sobre_mi__content-details-para:last-child {
   margin-bottom: 4rem;
 }
 
-.projects__row {
+.proyectos__row {
   display: -ms-grid;
   display: grid;
   grid-gap: 5rem;
@@ -433,20 +446,20 @@ textarea {
 }
 
 @media only screen and (min-width: 56.25em) {
-  .projects__row:nth-child(odd) {
+  .proyectos__row:nth-child(odd) {
     -ms-grid-columns: 1.5fr 1fr;
         grid-template-columns: 1.5fr 1fr;
   }
-  .projects__row:nth-child(even) {
+  .proyectos__row:nth-child(even) {
     -ms-grid-columns: 1fr 1.5fr;
         grid-template-columns: 1fr 1.5fr;
   }
-  .projects__row:nth-child(even) .projects__row-img-cont {
+  .proyectos__row:nth-child(even) .proyectos__row-img-cont {
     -ms-grid-column: 2;
     -ms-grid-column-span: 1;
     grid-column: 2 / 3;
   }
-  .projects__row:nth-child(even) .projects__row-content {
+  .proyectos__row:nth-child(even) .proyectos__row-content {
     -ms-grid-column: 1;
     -ms-grid-column-span: 1;
     grid-column: 1 / 2;
@@ -457,7 +470,7 @@ textarea {
 }
 
 @media only screen and (max-width: 56.25em) {
-  .projects__row {
+  .proyectos__row {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
     grid-gap: 2rem;
@@ -466,27 +479,27 @@ textarea {
 }
 
 @media only screen and (max-width: 56.25em) {
-  .projects__row {
+  .proyectos__row {
     text-align: center;
   }
 }
 
-.projects__row:last-child {
+.proyectos__row:last-child {
   margin-bottom: 0;
 }
 
-.projects__row-img-cont {
+.proyectos__row-img-cont {
   overflow: hidden;
 }
 
-.projects__row-img {
+.proyectos__row-img {
   width: 100%;
   display: block;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-.projects__row-content {
+.proyectos__row-content {
   padding: 2rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -504,26 +517,26 @@ textarea {
 }
 
 @media only screen and (max-width: 56.25em) {
-  .projects__row-content {
+  .proyectos__row-content {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
   }
 }
 
-.projects__row-content-title {
+.proyectos__row-content-title {
   font-weight: 700;
   font-size: 2.8rem;
   margin-bottom: 2rem;
 }
 
 @media only screen and (max-width: 37.5em) {
-  .projects__row-content-title {
+  .proyectos__row-content-title {
     font-size: 2.4rem;
   }
 }
 
-.projects__row-content-desc {
+.proyectos__row-content-desc {
   font-size: 1.8rem;
   color: grey;
   max-width: 60rem;
@@ -532,7 +545,7 @@ textarea {
 }
 
 @media only screen and (max-width: 37.5em) {
-  .projects__row-content-desc {
+  .proyectos__row-content-desc {
     font-size: 1.7rem;
   }
 }
@@ -671,8 +684,8 @@ textarea {
 
 .project-cs-hero {
   color: #fff;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(44, 131, 210, 0.8)), to(rgba(44, 131, 210, 0.8))), url(../../assets/svg/common-bg.svg);
-  background: linear-gradient(to right, rgba(44, 131, 210, 0.8), rgba(44, 131, 210, 0.8)), url(../../assets/svg/common-bg.svg);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(44, 147, 210, 0.8)), to(rgba(111, 40, 190, 0.8))), url(../../assets/svg/common-bg.svg);
+  background: linear-gradient(to right, rgba(44, 147, 210, 0.8), rgba(111, 40, 190, 0.8)), url(../../assets/svg/common-bg.svg);
   background-size: cover;
   background-position: center;
   position: relative;

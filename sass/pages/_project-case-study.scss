@@ -2,8 +2,8 @@
   color: #fff;
   background: linear-gradient(
       to right,
-      rgba($themeClrPrimary, 0.8),
-      rgba($themeClrPrimary, 0.8)
+      rgba($gradientStart, 0.8),
+      rgba($gradientEnd, 0.8)
     ),
     url(../../assets/svg/common-bg.svg);
   background-size: cover;
