@@ -90,7 +90,7 @@
   }
 }
 
-.about {
+.sobre_mi {
   background: rgb(250, 250, 250);
   &__content {
     display: grid;
@@ -125,7 +125,7 @@
   }
 }
 
-.projects {
+.proyectos {
   &__row {
     display: grid;
     @include respond(tab-land) {
