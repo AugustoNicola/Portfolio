@@ -173,3 +173,13 @@
 .d-none {
   display: none;
 }
+
+*[data-fadein] {
+	opacity: 0;
+	animation: fadein 0.5s ease-in-out;
+	animation-fill-mode: forwards;
+}
+@keyframes fadein {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
