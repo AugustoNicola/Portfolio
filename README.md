@@ -12,7 +12,7 @@
 
 <br>
 
-Este es el código fuente de mi página web personal de porftolio, en la que presento información sobre mis habilidades y experiencias. Hecha con HTML, SCSS y JavaScript.
+Este es el código fuente de mi página web personal de portfolio, en la que presento información sobre mis habilidades y experiencias. Hecha con HTML, SCSS y JavaScript.
 
 El diseño está basado en la plantilla de portfolio ["Dopefolio"](https://github.com/rammcodes/Dopefolio) diseñada por [Ram Maheshwari](https://github.com/rammcodes).
 
