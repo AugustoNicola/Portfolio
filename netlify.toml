@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+
+[[redirects]]
+  from = "/index.html"
+  to = "/index"
+  
+[[redirects]]
+  from = "/panaderia-la-esquina.html"
+  to = "/panaderia-la-esquina"
+
+[[redirects]]
+  from = "/harmonium.html"
+  to = "/harmonium"
+  
+[[redirects]]
+  from = "/dotfiles.html"
+  to = "/dotfiles"
+  
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
