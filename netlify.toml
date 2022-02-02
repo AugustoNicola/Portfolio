@@ -4,7 +4,11 @@
 [[redirects]]
   from = "/index.html"
   to = "/index"
-  
+
+[[redirects]]
+  from = "/insight-noticias.html"
+  to = "/insight-noticias"
+
 [[redirects]]
   from = "/panaderia-la-esquina.html"
   to = "/panaderia-la-esquina"
