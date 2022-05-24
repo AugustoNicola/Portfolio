@@ -371,7 +371,15 @@ textarea {
       color: #ffffff; }
   .cv__cta {
     margin-top: 5rem;
-    text-align: center; }
+    text-align: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 2rem;
+    flex-direction: row; }
+    @media only screen and (max-width: 56.25em) {
+      .cv__cta {
+        flex-direction: column; } }
 
 .project-cs-hero {
   color: #fff;

@@ -230,5 +230,14 @@
   &__cta {
     margin-top: 5rem;
     text-align: center;
+    
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 2rem;
+    flex-direction: row;
+    @include respond(tab-port) {
+      flex-direction: column;
+    }
   }
 }
