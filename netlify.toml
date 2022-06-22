@@ -22,5 +22,9 @@
   to = "/dotfiles"
   
 [[redirects]]
+  from = "/bogado.html"
+  to = "/bogado"
+  
+[[redirects]]
   from = "/*"
   to = "/404.html"
