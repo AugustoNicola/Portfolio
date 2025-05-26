@@ -302,6 +302,10 @@ textarea {
         margin: 0 3px; }
       .sobre_mi__content-details-para:last-child {
         margin-bottom: 4rem; }
+    
+    .sobre_mi__skill-subtitles {
+      font-size: 2.3rem;
+    }
 
 .proyectos__row {
   display: grid;
