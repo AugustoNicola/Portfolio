@@ -1,0 +1,33 @@
+@use '../abstracts' as *;
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border: 2px solid #eee;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: border-color .3s;
+
+  &:hover {
+    border-color: $themeClrPrimary;
+  }
+
+  &__option {
+    padding: .4rem 1.1rem;
+    border-radius: 50px;
+    color: $textMuted;
+    transition: color .3s;
+
+    &--active {
+      background: $themeGradient;
+      color: #fff;
+    }
+  }
+
+  &:hover &__option:not(&__option--active) {
+    color: $themeClrPrimary;
+  }
+}

@@ -1,15 +1,16 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "compile:scss": "node-sass sass/main.scss css/main.css",
-    "build": "npm run compile:scss"
-  },
-  "author": "",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
   "license": "GPL-3.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
   "dependencies": {
-    "node-sass": "^6.0.1"
+    "astro": "^7.4.1",
+    "sass": "^1.105.2"
   }
 }

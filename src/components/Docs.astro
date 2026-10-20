@@ -1,0 +1,41 @@
+---
+import { languages, useTranslations, type Lang } from '../i18n'
+import { docs } from '../data/profile'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+const otherLang = languages.find((l) => l !== lang)!
+---
+
+<section id="cv" class="docs sec-pad">
+  <div class="main-container">
+    <h2 class="heading heading-sec heading-sec__mb-med" data-fadein style="animation-delay: 0.4s;">
+      <span class="heading-sec__main">{t('docs.title')}</span>
+      <span class="heading-sec__sub">{t('docs.sub')}</span>
+    </h2>
+    <div class="docs__grid">
+      {
+        docs.map((doc, i) => (
+          <article class="doc-card" data-fadein style={`animation-delay: ${0.6 + i * 0.1}s;`}>
+            <svg class="doc-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <path d="M14 2v6h6M8 13h8M8 17h8M8 9h2" />
+            </svg>
+            <h3 class="doc-card__title">{t(doc.title)}</h3>
+            <p class="doc-card__desc">{t(doc.desc)}</p>
+            <a href={doc.href[lang]} target="_blank" rel="noreferrer" class="btn btn--med btn--theme">
+              {t('docs.open')}
+            </a>
+            <a href={doc.href[otherLang]} target="_blank" rel="noreferrer" hreflang={otherLang} class="doc-card__alt">
+              {t('docs.otherLang')}
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

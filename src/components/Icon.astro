@@ -1,0 +1,14 @@
+---
+// Renders an inline SVG from src/icons by display name ("C++" -> cpp.svg, "Node.js" -> nodejs.svg).
+interface Props {
+  name: string
+}
+
+const icons = import.meta.glob<string>('../icons/*.svg', { query: '?raw', import: 'default', eager: true })
+
+const slug = Astro.props.name.toLowerCase().replace('++', 'pp').replace(/[^a-z0-9]/g, '')
+const svg = icons[`../icons/${slug}.svg`]
+if (!svg) throw new Error(`Missing icon for "${Astro.props.name}" (expected src/icons/${slug}.svg)`)
+---
+
+<Fragment set:html={svg} />

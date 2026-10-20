@@ -4,7 +4,7 @@
 
 ### **Portfolio en línea: https://augustonicola.netlify.app**
 
-![Screenshot](assets/screenshot.png)
+![Screenshot](public/assets/screenshot.png)
 
 <br>
 
@@ -12,11 +12,11 @@
 
 <br>
 
-Este es el código fuente de mi página web personal de portfolio, en la que presento información sobre mis habilidades y experiencias. Hecha con HTML, SCSS y JavaScript.
+Este es el código fuente de mi página web personal de portfolio, en la que presento información sobre mis habilidades y experiencias. Hecha con [Astro](https://astro.build) y SCSS, disponible en inglés y español.
 
 El diseño está basado en la plantilla de portfolio ["Dopefolio"](https://github.com/rammcodes/Dopefolio) diseñada por [Ram Maheshwari](https://github.com/rammcodes).
 
-Los íconos visuales utilizados a lo largo del proyecto son propiedad de [Font Awesome](https://fontawesome.com/).
+Los íconos visuales utilizados a lo largo del proyecto son propiedad de [Font Awesome](https://fontawesome.com/) y [Simple Icons](https://simpleicons.org/).
 
 <br>
 
@@ -28,17 +28,27 @@ Para poder editar localmente la página, seguir estos pasos:
 		$ git clone https://github.com/AugustoNicola/Portfolio
 		$ cd Portfolio/
 	
-2. **Instalar las dependencias necesarias (`node-sass`)**
-		
+2. **Crear el entorno con Node.js 22 (Astro requiere Node ≥ 22.22) e instalar las dependencias**
+
+		$ conda create -n portfolio -c conda-forge "nodejs>=22.22,<23"
+		$ conda activate portfolio
 		$ npm install
 
-¡Listo, el proyecto debería estar configurado correctamente! Para compilar las modificaciones hechas a los archivos SCSS, se puede utilizar la extensión [Live SASS](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass), o bien usar el comando con la dependencia `npm run build`.
+¡Listo, el proyecto debería estar configurado correctamente!
 
 <br>
 
 ## Comandos
 
-* `npm run build`: Lee los archivos de la carpeta `scss` y los compila en `css/main.css` para ser usados por las páginas estáticas.
+* `npm run dev`: Levanta un servidor de desarrollo en `http://localhost:4321` con recarga automática.
+* `npm run build`: Genera el sitio estático en la carpeta `dist/` (es lo que ejecuta Netlify).
+* `npm run preview`: Sirve localmente el contenido de `dist/`.
+
+## Estructura
+
+* `src/data/`: Todo el contenido del sitio (bio, investigación, formación, proyectos y enlaces), con sus versiones en inglés y español.
+* `src/i18n.ts`: Textos de la interfaz en ambos idiomas. El inglés vive en `/` y el español en `/es/`.
+* `src/components/`: Secciones de la página; `src/styles/`: estilos SCSS; `src/icons/`: íconos SVG de herramientas.
 
 <br>
 

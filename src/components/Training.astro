@@ -1,0 +1,51 @@
+---
+import { resolveHref, useTranslations, type Lang } from '../i18n'
+import { training } from '../data/research'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+function period(from: number, to?: number | 'present'): string {
+  if (to === undefined) return String(from)
+  return `${from} — ${to === 'present' ? t('training.present') : to}`
+}
+---
+
+<section id="training" class="training sec-pad">
+  <div class="main-container">
+    <h2 class="heading heading-sec heading-sec__mb-med" data-fadein style="animation-delay: 0.4s;">
+      <span class="heading-sec__main">{t('training.title')}</span>
+      <span class="heading-sec__sub">{t('training.sub')}</span>
+    </h2>
+    <ol class="timeline" data-fadein style="animation-delay: 0.6s;">
+      {
+        training.map((item) => {
+          const href = item.href && resolveHref(item.href, lang)
+          const external = href && !href.startsWith('/')
+          return (
+            <li class="timeline__item">
+              <p class="timeline__date">{period(item.from, item.to)}</p>
+              <div class="timeline__body">
+                <h3 class="timeline__title">
+                  {href ? (
+                    <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>
+                      {item.title[lang]}
+                    </a>
+                  ) : (
+                    item.title[lang]
+                  )}
+                </h3>
+                <p class="timeline__place">{item.place[lang]}</p>
+                <p class="timeline__desc">{item.description[lang]}</p>
+              </div>
+            </li>
+          )
+        })
+      }
+    </ol>
+  </div>
+</section>

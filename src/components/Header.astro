@@ -1,0 +1,105 @@
+---
+import { languages, localizePath, useTranslations, type Lang } from '../i18n'
+
+interface Props {
+  lang: Lang
+  /** Current path without the language prefix, used by the language switch. */
+  neutralPath: string
+}
+
+const { lang, neutralPath } = Astro.props
+const t = useTranslations(lang)
+const home = localizePath('/', lang)
+const links = [
+  { href: `${home}#about`, label: t('nav.about') },
+  { href: `${home}#research`, label: t('nav.research') },
+  { href: `${home}#projects`, label: t('nav.projects') },
+  { href: `${home}#cv`, label: t('nav.cv') },
+]
+const otherLang = languages.find((l) => l !== lang)!
+---
+
+<header class="header">
+  <div class="header__content">
+    <a href={home} class="header__logo-container">
+      <div class="header__logo-img-cont">
+        <img src="/assets/png/me.png" alt="Augusto Nicola" class="header__logo-img" />
+      </div>
+      <span class="header__logo-sub">Augusto Nicola</span>
+    </a>
+    <div class="header__main">
+      <ul class="header__links">
+        {
+          links.map((link) => (
+            <li class="header__link-wrapper">
+              <a href={link.href} class="header__link">{link.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <a
+        href={localizePath(neutralPath, otherLang)}
+        hreflang={otherLang}
+        class="lang-toggle"
+        aria-label={t('nav.switchLang')}
+        title={t('nav.switchLang')}
+        data-lang-toggle
+      >
+        {
+          languages.map((l) => (
+            <span class:list={['lang-toggle__option', { 'lang-toggle__option--active': l === lang }]}>
+              {l.toUpperCase()}
+            </span>
+          ))
+        }
+      </a>
+      <button class="header__main-ham-menu-cont" aria-label={t('nav.menuOpen')} aria-expanded="false" data-label-open={t('nav.menuOpen')} data-label-close={t('nav.menuClose')}>
+        <img src="/assets/svg/ham-menu.svg" alt="" class="header__main-ham-menu" />
+        <img src="/assets/svg/ham-menu-close.svg" alt="" class="header__main-ham-menu-close d-none" />
+      </button>
+    </div>
+  </div>
+  <div class="header__sm-menu">
+    <div class="header__sm-menu-content">
+      <ul class="header__sm-menu-links">
+        {
+          links.map((link) => (
+            <li class="header__sm-menu-link">
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script>
+  const hamMenuBtn = document.querySelector<HTMLButtonElement>('.header__main-ham-menu-cont')!
+  const smallMenu = document.querySelector('.header__sm-menu')!
+  const headerHamMenuBtn = document.querySelector('.header__main-ham-menu')!
+  const headerHamMenuCloseBtn = document.querySelector('.header__main-ham-menu-close')!
+
+  function setMenuOpen(open: boolean) {
+    smallMenu.classList.toggle('header__sm-menu--active', open)
+    headerHamMenuBtn.classList.toggle('d-none', open)
+    headerHamMenuCloseBtn.classList.toggle('d-none', !open)
+    hamMenuBtn.setAttribute('aria-expanded', String(open))
+    hamMenuBtn.setAttribute('aria-label', (open ? hamMenuBtn.dataset.labelClose : hamMenuBtn.dataset.labelOpen) ?? '')
+  }
+
+  hamMenuBtn.addEventListener('click', () => {
+    setMenuOpen(!smallMenu.classList.contains('header__sm-menu--active'))
+  })
+
+  document.querySelectorAll('.header__sm-menu-link').forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false))
+  })
+
+  // Keep the visitor on the same section when switching languages.
+  document.querySelector<HTMLAnchorElement>('[data-lang-toggle]')!.addEventListener('click', (e) => {
+    if (!location.hash) return
+    e.preventDefault()
+    location.href = (e.currentTarget as HTMLAnchorElement).href + location.hash
+  })
+</script>

@@ -4,7 +4,7 @@
 
 ### **Live Version: https://augustonicola.netlify.app**
 
-![Screenshot](assets/screenshot.png)
+![Screenshot](public/assets/screenshot.png)
 
 <br>
 
@@ -12,15 +12,15 @@
 
 <br>
 
-This is the source code for my personal portfolio website, in which I present information about my aptitudes and experience. Made with HTML, SCSS and JavaScript.
+This is the source code for my personal portfolio website, in which I present information about my aptitudes and experience. Made with [Astro](https://astro.build) and SCSS, available in English and Spanish.
 
 The design is heavily based off [Ram Maheshwari's](https://github.com/rammcodes) own portfolio template, ["Dopefolio"](https://github.com/rammcodes/Dopefolio).
 
-The icons used throughout the project are property of [Font Awesome](https://fontawesome.com/).
+The icons used throughout the project are property of [Font Awesome](https://fontawesome.com/) and [Simple Icons](https://simpleicons.org/).
 
 <br>
 
-# Instalación y Uso Local
+# Installation and Local Usage
 In order to locally edit the website, please follow these steps:
 
 1. **Clone the repository and move to the target directory**
@@ -28,17 +28,27 @@ In order to locally edit the website, please follow these steps:
 		$ git clone https://github.com/AugustoNicola/Portfolio
 		$ cd Portfolio/
 
-2. **Install the necessary dependencies (i.e. `node-sass`)**
-		
-		$ npm run install-all-dependencies
+2. **Create an environment with Node.js 22 (Astro requires Node ≥ 22.22) and install the dependencies**
 
-That's it, the project should be ready to use! In order to compile and use modifications made to the SCSS files, either the [Live SASS extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass) or the `npm run build` can be used.
+		$ conda create -n portfolio -c conda-forge "nodejs>=22.22,<23"
+		$ conda activate portfolio
+		$ npm install
+
+That's it, the project should be ready to use!
 
 <br>
 
 ## Commands
 
-* `npm run build`: Reads all files inside the `scss` directory and compiles them into `css/main.css` to be used by the static files.
+* `npm run dev`: Starts a development server at `http://localhost:4321` with hot reload.
+* `npm run build`: Builds the static site into `dist/` (this is what Netlify runs).
+* `npm run preview`: Serves the contents of `dist/` locally.
+
+## Structure
+
+* `src/data/`: All of the site's content (bio, research, training, projects, and links), in both English and Spanish.
+* `src/i18n.ts`: UI strings in both languages. English lives at `/` and Spanish at `/es/`.
+* `src/components/`: Page sections; `src/styles/`: SCSS styles; `src/icons/`: tool SVG icons.
 
 <br>
 

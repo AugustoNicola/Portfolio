@@ -1,0 +1,56 @@
+---
+import '../styles/main.scss'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { languages, localizePath, unlocalizePath, useTranslations, type Lang } from '../i18n'
+import { SITE_URL } from '../data/profile'
+
+interface Props {
+  lang: Lang
+  title?: string
+  description?: string
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+const title = Astro.props.title ?? t('meta.title')
+const description = Astro.props.description ?? t('meta.description')
+const neutralPath = unlocalizePath(Astro.url.pathname)
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/logo192.png" />
+    <link rel="canonical" href={new URL(localizePath(neutralPath, lang), SITE_URL)} />
+    {languages.map((l) => <link rel="alternate" hreflang={l} href={new URL(localizePath(neutralPath, l), SITE_URL)} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(neutralPath, SITE_URL)} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL('/assets/png/Opengraph.png', SITE_URL)} />
+    <meta property="og:url" content={new URL(localizePath(neutralPath, lang), SITE_URL)} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_AR' : 'en_US'} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header lang={lang} neutralPath={neutralPath} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

@@ -1,0 +1,39 @@
+---
+import { useTranslations, type Lang } from '../i18n'
+import { age, bio, skillGroups } from '../data/profile'
+import Skills from './Skills.astro'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+---
+
+<section id="about" class="about sec-pad">
+  <div class="main-container">
+    <h2 class="heading heading-sec heading-sec__mb-med" data-fadein style="animation-delay: 0.4s;">
+      <span class="heading-sec__main">{t('about.title')}</span>
+    </h2>
+    <div class="about__content">
+      <div class="about__content-main" data-fadein style="animation-delay: 0.6s;">
+        <h3 class="about__content-title">{t('about.whoTitle')}</h3>
+        <div class="about__content-details">
+          {bio(age())[lang].map((para) => <p class="about__content-details-para" set:html={para} />)}
+        </div>
+      </div>
+      <div class="about__content-skills" data-fadein style="animation-delay: 0.8s;">
+        <h3 class="about__content-title">{t('about.skillsTitle')}</h3>
+        {
+          skillGroups.map((group) => (
+            <>
+              <h4 class="about__skill-subtitle">{group.title[lang]}</h4>
+              <Skills skills={group.skills} />
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
