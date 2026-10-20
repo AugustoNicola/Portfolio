@@ -367,6 +367,10 @@
 }
 
 .research {
+  // Lets the project cards' glow spill over the next section instead of being cut off
+  position: relative;
+  z-index: 1;
+
   &__current-title {
     margin: 9rem 0 3.5rem;
     font-size: 2.8rem;

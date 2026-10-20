@@ -182,10 +182,7 @@
 }
 
 .sec-pad {
-  padding: 12rem 0;
-  @include respond(tab-port) {
-    padding: 8rem 0;
-  }
+  padding: 3rem 0;
 }
 
 .text-primary {
