@@ -183,6 +183,23 @@
     mask-image: linear-gradient(to bottom, #000 calc(var(--row-height) + 1.5rem), transparent);
   }
 
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+    margin-bottom: 3rem;
+
+    .about__content-title {
+      margin-bottom: 0;
+    }
+
+    .toolkit__toggle {
+      margin-top: 0;
+    }
+  }
+
   &__toggle {
     display: inline-flex;
     align-items: center;

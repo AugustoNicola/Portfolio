@@ -94,7 +94,7 @@ export const ui = {
     'about.title': 'Sobre Mí',
     'about.whoTitle': 'Quién soy',
     'about.skillsTitle': 'Mis herramientas',
-    'about.showAll': 'Ver todas las herramientas',
+    'about.showAll': 'Ver todas',
     'about.showLess': 'Ver menos',
     'research.title': 'Investigación',
     'research.sub':

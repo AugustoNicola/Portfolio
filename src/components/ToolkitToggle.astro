@@ -1,0 +1,26 @@
+---
+import { useTranslations, type Lang } from '../i18n'
+
+interface Props {
+  lang: Lang
+}
+
+const t = useTranslations(Astro.props.lang)
+---
+
+<button
+  type="button"
+  class="toolkit__toggle"
+  aria-controls="toolkit"
+  aria-expanded="false"
+  data-toolkit-toggle
+  data-label-show={t('about.showAll')}
+  data-label-hide={t('about.showLess')}
+  hidden
+>
+  <span data-toolkit-label>{t('about.showAll')}</span>
+  <span class="toolkit__count" data-toolkit-count></span>
+  <svg class="toolkit__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+</button>
