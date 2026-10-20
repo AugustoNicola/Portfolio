@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   padding: 3px;
-  border: 2px solid #eee;
+  border: 2px solid var(--border);
   border-radius: 50px;
   font-size: 1.3rem;
   font-weight: 700;
@@ -12,7 +12,7 @@
   transition: border-color .3s;
 
   &:hover {
-    border-color: $themeClrPrimary;
+    border-color: var(--accent);
   }
 
   &__option {
@@ -28,6 +28,6 @@
   }
 
   &:hover &__option:not(&__option--active) {
-    color: $themeClrPrimary;
+    color: var(--accent);
   }
 }

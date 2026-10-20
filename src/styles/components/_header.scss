@@ -4,9 +4,8 @@
   position: fixed;
   width: 100%;
   z-index: 1000;
-  background: #000;
-  background: #fff;
-  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.1);
+  background: var(--header-bg);
+  box-shadow: var(--header-shadow);
 
   &__content {
     display: flex;
@@ -23,11 +22,11 @@
     text-decoration: none;
     align-items: center;
     cursor: pointer;
-    color: #333;
+    color: var(--text-body);
     transition: color .3s;
 
     &:hover {
-      color: $themeClrPrimary;
+      color: var(--accent);
     }
   }
   &__logo-img-cont {
@@ -56,11 +55,22 @@
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 1px;
+    white-space: nowrap;
+
+    // Phones also fit the language and theme toggles in the header
+    @include respond(phone) {
+      font-size: 1.5rem;
+      letter-spacing: .5px;
+    }
   }
   &__main {
     display: flex;
     align-items: center;
     gap: 1.5rem;
+
+    @include respond(phone) {
+      gap: 1rem;
+    }
   }
   &__links {
     display: flex;
@@ -72,14 +82,14 @@
     padding: 2.2rem 3rem;
     display: inline-block;
     font-size: 1.6rem;
-    color: #333;
+    color: var(--text-body);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
     transition: all .3s;
 
     &:hover {
-      color: $themeClrPrimary;
+      color: var(--accent);
       letter-spacing: .2rem;
     }
     @include respond(tab-port) {
@@ -99,15 +109,18 @@
       display: block;
     }
   }
+  // The menu icons are black SVG files; flip them for the dark theme
   &__main-ham-menu {
     width: 100%;
+    filter: invert(var(--icon-invert));
   }
   &__main-ham-menu-close {
     width: 100%;
+    filter: invert(var(--icon-invert));
   }
 
   &__sm-menu {
-    background: #fff;
+    background: var(--header-bg);
     position: absolute;
     width: 100%;
     top: 100%;
@@ -134,21 +147,21 @@
       text-decoration: none;
       padding: 2.5rem 3rem;
       font-size: 1.6rem;
-      color: #333;
+      color: var(--text-body);
       text-align: right;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--border);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 2px;
       transition: color .3s;
       
       &:hover {
-        color: $themeClrPrimary;
+        color: var(--accent);
       }
     }
     &:first-child {
       a {
-        border-top: 1px solid #eee;
+        border-top: 1px solid var(--border);
       }
     }
   }

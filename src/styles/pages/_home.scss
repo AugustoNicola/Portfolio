@@ -1,7 +1,8 @@
 @use '../abstracts' as *;
 
 %gradient-bg {
-  background: linear-gradient(
+  background: linear-gradient(var(--gradient-dim), var(--gradient-dim)),
+    linear-gradient(
       to right,
       rgba($gradientStart, 0.8),
       rgba($gradientEnd, 0.8)
@@ -131,7 +132,7 @@
 }
 
 .about {
-  background: rgb(250, 250, 250);
+  background: var(--bg-alt);
   &__content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -150,7 +151,7 @@
     }
     &-details-para {
       font-size: 1.8rem;
-      color: grey;
+      color: var(--text-muted);
       max-width: 60rem;
       line-height: 1.7;
       margin-bottom: 1rem;
@@ -163,7 +164,7 @@
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    color: #444;
+    color: var(--text-strong);
   }
 }
 
@@ -206,10 +207,10 @@
     gap: 1rem;
     margin-top: 1.5rem;
     padding: 1rem 2.2rem;
-    border: 2px solid $themeClrPrimary;
+    border: 2px solid var(--accent);
     border-radius: 50px;
     background: transparent;
-    color: $themeClrPrimary;
+    color: var(--accent);
     font-size: 1.4rem;
     font-weight: 700;
     letter-spacing: 1px;
@@ -226,7 +227,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid $gradientEnd;
+      outline: 2px solid var(--accent-hover);
       outline-offset: 3px;
     }
   }
@@ -234,7 +235,7 @@
   &__count {
     padding: .1rem .8rem;
     border-radius: 50px;
-    background: rgba($themeClrPrimary, .12);
+    background: var(--accent-soft);
     font-size: 1.25rem;
     letter-spacing: .5px;
 
@@ -262,7 +263,7 @@
 .thesis {
   display: grid;
   grid-template-columns: 1.7fr 1fr;
-  background: #fff;
+  background: var(--surface);
   border-radius: $cardRadius;
   box-shadow: $cardShadow;
   overflow: hidden;
@@ -295,18 +296,18 @@
     margin-top: 1rem;
     font-size: 1.9rem;
     font-style: italic;
-    color: #555;
+    color: var(--text-soft);
     line-height: 1.5;
   }
 
   &__desc {
     margin-top: 2.5rem;
     font-size: 1.8rem;
-    color: grey;
+    color: var(--text-muted);
     line-height: 1.7;
 
     strong {
-      color: #444;
+      color: var(--text-strong);
     }
   }
 
@@ -414,8 +415,8 @@
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid #eee;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: $cardRadius;
   transition: transform .3s;
 
@@ -428,7 +429,7 @@
     border-radius: inherit;
     background: $themeGradient;
     filter: blur(26px);
-    opacity: .5;
+    opacity: var(--glow-opacity);
     transform: translateY(8px);
     transition: opacity .4s;
   }
@@ -439,7 +440,7 @@
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    background: #fff;
+    background: var(--surface);
   }
 
   &:hover {
@@ -456,9 +457,9 @@
     justify-content: center;
     gap: 2.5rem;
     padding: 2.5rem 3rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border);
     border-radius: $cardRadius $cardRadius 0 0;
-    background: linear-gradient(135deg, rgba($gradientStart, .08), rgba($gradientEnd, .1));
+    background: var(--brand-band);
 
     @include respond(phone) {
       gap: 1.8rem;
@@ -488,7 +489,7 @@
     font-weight: 900;
     line-height: 1;
     letter-spacing: 1px;
-    color: #0b1f36;
+    color: var(--brand-name);
 
     @include respond(phone) {
       font-size: 3.6rem;
@@ -500,7 +501,7 @@
     font-size: 1.4rem;
     font-weight: 600;
     line-height: 1.35;
-    color: #555;
+    color: var(--text-soft);
   }
 
   &__body {
@@ -523,12 +524,12 @@
   &__desc {
     margin: 1.5rem 0 2.5rem;
     font-size: 1.6rem;
-    color: grey;
+    color: var(--text-muted);
     line-height: 1.7;
     flex-grow: 1;
 
     strong {
-      color: #444;
+      color: var(--text-strong);
     }
   }
 }
@@ -536,7 +537,7 @@
 // ---- Education & training ----
 
 .training {
-  background: rgb(250, 250, 250);
+  background: var(--bg-alt);
 }
 
 .timeline {
@@ -557,7 +558,7 @@
     text-align: right;
     font-size: 1.6rem;
     font-weight: 700;
-    color: $themeClrPrimary;
+    color: var(--accent);
 
     @include respond(phone) {
       padding: 0 0 .8rem 3rem;
@@ -568,7 +569,7 @@
   &__body {
     position: relative;
     padding: 0 0 5rem 3rem;
-    border-left: 2px solid rgba($themeClrPrimary, .25);
+    border-left: 2px solid var(--timeline-line);
 
     &::before {
       content: '';
@@ -579,7 +580,7 @@
       height: 1.4rem;
       border-radius: 50%;
       background: $themeGradient;
-      box-shadow: 0 0 0 4px rgb(250, 250, 250);
+      box-shadow: 0 0 0 4px var(--bg-alt);
     }
   }
 
@@ -593,7 +594,7 @@
     &__item {
       position: relative;
       padding: 0 0 4rem 3rem;
-      border-left: 2px solid rgba($themeClrPrimary, .25);
+      border-left: 2px solid var(--timeline-line);
 
       &::before {
         content: '';
@@ -604,7 +605,7 @@
         height: 1.4rem;
         border-radius: 50%;
         background: $themeGradient;
-        box-shadow: 0 0 0 4px rgb(250, 250, 250);
+        box-shadow: 0 0 0 4px var(--bg-alt);
       }
     }
     &__item:last-child {
@@ -633,7 +634,7 @@
     a {
       transition: color .3s;
       &:hover {
-        color: $themeClrPrimary;
+        color: var(--accent);
       }
     }
   }
@@ -644,13 +645,13 @@
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #999;
+    color: var(--text-subtle);
   }
 
   &__desc {
     margin-top: 1rem;
     font-size: 1.7rem;
-    color: grey;
+    color: var(--text-muted);
     line-height: 1.7;
   }
 }
@@ -675,8 +676,8 @@
 .project-card {
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid #eee;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: $cardRadius;
   box-shadow: $cardShadow;
   overflow: hidden;
@@ -690,15 +691,16 @@
   &__img-cont {
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    border-bottom: 1px solid #eee;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
   }
 
   &__img {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
-    object-position: top;
+    // Mockups have a transparent background, so show them whole rather than cropped
+    object-fit: contain;
     transition: transform .5s;
   }
 
@@ -727,7 +729,7 @@
   &__desc {
     margin: 1.2rem 0 2rem;
     font-size: 1.55rem;
-    color: grey;
+    color: var(--text-muted);
     line-height: 1.6;
     flex-grow: 1;
   }
@@ -774,13 +776,13 @@
   align-items: center;
   text-align: center;
   padding: 4.5rem 3.5rem;
-  background: #fff;
+  background: var(--surface);
   border-radius: $cardRadius;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 
   &__icon {
     width: 5rem;
-    color: $themeClrPrimary;
+    color: var(--accent);
     margin-bottom: 2rem;
   }
 
@@ -792,7 +794,7 @@
   &__desc {
     margin: 1.2rem 0 3rem;
     font-size: 1.7rem;
-    color: grey;
+    color: var(--text-muted);
     line-height: 1.6;
     flex-grow: 1;
   }
@@ -807,7 +809,7 @@
     transition: color .3s;
 
     &:hover {
-      color: $themeClrPrimary;
+      color: var(--accent);
     }
   }
 }

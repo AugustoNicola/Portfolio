@@ -1,0 +1,49 @@
+@use '../abstracts' as *;
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.6rem;
+  height: 3.6rem;
+  flex-shrink: 0;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-faint);
+  transition: border-color .3s, color .3s;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-hover);
+    outline-offset: 2px;
+  }
+
+  svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  // Shows the theme you'd switch to
+  &__sun {
+    display: none;
+  }
+}
+
+:root[data-theme='dark'] .theme-toggle {
+  &__moon {
+    display: none;
+  }
+  &__sun {
+    display: block;
+  }
+}
+
+// Without JS there's no data-theme and the toggle can't work, so hide it
+:root:not([data-theme]) .theme-toggle {
+  display: none;
+}

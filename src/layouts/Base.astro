@@ -23,6 +23,19 @@ const neutralPath = unlocalizePath(Astro.url.pathname)
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      // Set the theme before first paint to avoid a flash: saved choice, else the system setting.
+      ;(() => {
+        let theme
+        try {
+          theme = localStorage.getItem('theme')
+        } catch {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
 

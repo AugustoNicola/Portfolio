@@ -10,7 +10,7 @@
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: $themeClrPrimary;
+  color: var(--accent);
   margin-bottom: 1.2rem;
 }
 
@@ -29,15 +29,15 @@
   }
 
   &--ongoing {
-    background: rgba(#1f9d55, 0.1);
-    color: #1a7f46;
+    background: var(--ongoing-bg);
+    color: var(--ongoing-text);
 
     &::before {
       content: '';
       width: .7rem;
       height: .7rem;
       border-radius: 50%;
-      background: #1f9d55;
+      background: var(--ongoing-dot);
       animation: pulse 2s infinite;
     }
   }
@@ -55,7 +55,7 @@
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: $themeClrPrimary;
+  color: var(--accent);
   transition: color .3s;
 
   &::after {
@@ -66,7 +66,7 @@
   }
 
   &:hover {
-    color: $gradientEnd;
+    color: var(--accent-hover);
     &::after {
       transform: translateX(4px);
     }

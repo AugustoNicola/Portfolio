@@ -10,9 +10,9 @@
     font-size: 1.6rem;
     border-radius: $commonBorderRadius;
     font-weight: 600;
-    color: #777;
+    color: var(--text-faint);
     
-    background-image: linear-gradient(to right, rgba(#999, 0.2) 0%, rgba(#999, 0.2) 25%, rgba(#999, 0.2) 50%, #2B6FD5 75%, #4D51CE 100%);
+    background-image: linear-gradient(to right, var(--skill-bg) 0%, var(--skill-bg) 25%, var(--skill-bg) 50%, #2B6FD5 75%, #4D51CE 100%);
     background-size: 400% 400%;
     background-repeat: no-repeat;
     transition: background-position .65s, color .65s;
@@ -22,7 +22,7 @@
     align-items: center;
     
     & svg {
-      color: #777;
+      color: var(--text-faint);
       width: 2rem;
       margin-right: 1rem;
       transition: all .65s;

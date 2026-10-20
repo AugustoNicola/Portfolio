@@ -1,0 +1,94 @@
+@use '../abstracts' as *;
+
+// Color tokens. The theme is chosen by an inline script in Base.astro, which sets
+// data-theme on <html> before first paint (saved choice, else the system setting).
+// Without JS, the media query below still follows the system setting.
+
+@mixin light-theme {
+  color-scheme: light;
+  --bg: #fff;
+  --bg-alt: rgb(250, 250, 250);
+  --surface: #fff;
+  --border: #eee;
+  --header-bg: #fff;
+  --header-shadow: 0 10px 100px rgba(0, 0, 0, 0.1);
+
+  --text: #000;
+  --text-body: #333;
+  --text-strong: #444;
+  --text-soft: #555;
+  --text-muted: grey;
+  --text-faint: #777;
+  --text-subtle: #999;
+
+  --accent: #{$themeClrPrimary};
+  --accent-hover: #{$gradientEnd};
+  --accent-soft: #{rgba($themeClrPrimary, .12)};
+  --timeline-line: #{rgba($themeClrPrimary, .25)};
+
+  --skill-bg: #{rgba(#999, 0.2)};
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.07);
+  --shadow-card-hover: 0 18px 50px rgba(0, 0, 0, 0.13);
+  --glow-opacity: .5;
+  --gradient-dim: transparent;
+
+  --ongoing-bg: #{rgba(#1f9d55, 0.1)};
+  --ongoing-text: #1a7f46;
+  --ongoing-dot: #1f9d55;
+
+  --brand-band: linear-gradient(135deg, #{rgba($gradientStart, .08)}, #{rgba($gradientEnd, .1)});
+  --brand-name: #0b1f36;
+  --icon-invert: 0;
+}
+
+@mixin dark-theme {
+  color-scheme: dark;
+  --bg: #0f1218;
+  --bg-alt: #141821;
+  --surface: #1a1f2b;
+  --border: #283041;
+  --header-bg: #12161e;
+  --header-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
+
+  --text: #eef0f5;
+  --text-body: #d5d9e2;
+  --text-strong: #e3e6ee;
+  --text-soft: #b8beca;
+  --text-muted: #9ca3b3;
+  --text-faint: #8f97a8;
+  --text-subtle: #7f8798;
+
+  --accent: #5aa9f0;
+  --accent-hover: #a78bfa;
+  --accent-soft: rgba(90, 169, 240, .16);
+  --timeline-line: rgba(90, 169, 240, .3);
+
+  --skill-bg: rgba(255, 255, 255, .07);
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.45);
+  --shadow-card-hover: 0 18px 50px rgba(0, 0, 0, 0.6);
+  --glow-opacity: .4;
+  // Tones down the bright brand gradients (hero, CV section, thesis panel)
+  --gradient-dim: rgba(8, 10, 16, .35);
+
+  --ongoing-bg: rgba(74, 222, 128, .12);
+  --ongoing-text: #4ade80;
+  --ongoing-dot: #4ade80;
+
+  --brand-band: linear-gradient(135deg, #{rgba($gradientStart, .16)}, #{rgba($gradientEnd, .2)});
+  --brand-name: #eef0f5;
+  --icon-invert: 1;
+}
+
+:root {
+  @include light-theme;
+}
+
+:root[data-theme='dark'] {
+  @include dark-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include dark-theme;
+  }
+}

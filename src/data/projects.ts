@@ -19,7 +19,7 @@ export const softwareProjects: SoftwareProject[] = [
     slug: 'wave-willdom',
     title: { en: 'WAVE @ WillDom', es: 'WAVE @ WillDom' },
     kind: { en: 'Work experience · 2022–2025', es: 'Experiencia laboral · 2022–2025' },
-    image: '/assets/jpeg/proyecto-willdom.jpeg',
+    image: '/assets/projects/willdom.webp',
     summary: {
       en: 'My first long-term work experience: full-stack development and systems administration for an internal recruiting and business-logic platform at an international IT consultancy.',
       es: 'Mi primera experiencia laboral a largo plazo: desarrollo full-stack y administración de sistemas para una plataforma de reclutamiento y lógica de negocio integral en una consultora de TI internacional.',
@@ -45,7 +45,7 @@ export const softwareProjects: SoftwareProject[] = [
     slug: 'insight-noticias',
     title: { en: '"Insight" News Blog', es: 'Blog de Noticias "Insight"' },
     kind: { en: 'Personal project', es: 'Proyecto personal' },
-    image: '/assets/jpeg/proyecto-insight.jpeg',
+    image: '/assets/projects/insight.webp',
     summary: {
       en: 'A full-stack news blog with users, posts, categories, and comments. Built with the Laravel framework and a MySQL database.',
       es: 'Una aplicación full-stack de un blog de noticias, con sistema de usuaries, publicaciones, categorías y comentarios. Hecha con el framework Laravel y base de datos MySQL.',
@@ -70,7 +70,7 @@ export const softwareProjects: SoftwareProject[] = [
     slug: 'panaderia-la-esquina',
     title: { en: '"La Esquina" Bakery', es: 'Panadería "La Esquina"' },
     kind: { en: 'Personal project', es: 'Proyecto personal' },
-    image: '/assets/jpeg/proyecto-la-esquina.jpeg',
+    image: '/assets/projects/la-esquina.webp',
     summary: {
       en: 'A full-stack online store for a neighborhood bakery, built from scratch with an editable database, user accounts, and a shopping cart. Made with the MERN stack.',
       es: 'Una tienda virtual full-stack desde cero de una panadería de barrio, con base de datos modificable, sistema de usuaries y carrito. Hecha con el stack de tecnologías MERN.',
@@ -95,7 +95,7 @@ export const softwareProjects: SoftwareProject[] = [
     slug: 'harmonium',
     title: { en: 'Harmonium', es: 'Harmonium' },
     kind: { en: 'Personal project', es: 'Proyecto personal' },
-    image: '/assets/jpeg/proyecto-harmonium.jpeg',
+    image: '/assets/projects/harmonium.webp',
     summary: {
       en: 'An educational web app for learning about musical chords and scales, with an interactive piano that shows how they are played. Made with React.js.',
       es: 'Aplicación web didáctica para aprender acerca de acordes y escalas musicales. Cuenta con un piano interactivo y una vista de escalas y acordes que muestra cómo se tocan. Hecha con React.js.',
@@ -120,7 +120,7 @@ export const softwareProjects: SoftwareProject[] = [
     slug: 'bogado',
     title: { en: 'Bogado Cleaning Services', es: 'Bogado Servicios de Limpieza' },
     kind: { en: 'Client project', es: 'Proyecto para cliente' },
-    image: '/assets/jpeg/proyecto-bogado.jpeg',
+    image: '/assets/projects/bogado.webp',
     summary: {
       en: 'A static presence website for a national company specialized in professional cleaning services.',
       es: 'Sitio web estático de presencia, desarrollado para una empresa nacional especializada en servicios profesionales de limpieza.',
@@ -141,7 +141,7 @@ export const softwareProjects: SoftwareProject[] = [
     slug: 'dotfiles',
     title: { en: 'My Dotfiles', es: 'Mis Dotfiles' },
     kind: { en: 'Personal project', es: 'Proyecto personal' },
-    image: '/assets/jpeg/proyecto-dotfiles.jpeg',
+    image: '/assets/projects/dotfiles.webp',
     summary: {
       en: 'The configuration files I gradually tailored to my liking on my GNU/Linux system.',
       es: 'Mis dotfiles son los archivos de configuración del sistema operativo GNU/Linux que fui adaptando a mi preferencia.',

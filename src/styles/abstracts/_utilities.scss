@@ -61,7 +61,7 @@
   &__sub {
     display: block;
     text-align: center;
-    color: #777;
+    color: var(--text-faint);
     font-size: 2rem;
     font-weight: 500;
     max-width: 80rem;
@@ -166,17 +166,17 @@
     }
   }
   &--theme-inv {
-    background: #fff;
+    background: var(--surface);
     padding: calc(1.5rem - 2px) calc(5rem - 2px);
     box-shadow: none;
     
-    color: $themeClrPrimary;
-    border: 2px solid $themeClrPrimary;
+    color: var(--accent);
+    border: 2px solid var(--accent);
     transition: border .4s, color .4s;
     
     &:hover {
-      border: 2px solid #6A2FC1;
-      color: #6A2FC1;
+      border: 2px solid var(--accent-hover);
+      color: var(--accent-hover);
     }
   }
 }

@@ -2,7 +2,8 @@
 
 .project-cs-hero {
   color: #fff;
-  background: linear-gradient(
+  background: linear-gradient(var(--gradient-dim), var(--gradient-dim)),
+    linear-gradient(
       to right,
       rgba($gradientStart, 0.8),
       rgba($gradientEnd, 0.8)
@@ -86,7 +87,7 @@
     &-para {
       font-size: 1.8rem;
       line-height: 1.7;
-      color: grey;
+      color: var(--text-muted);
       margin-bottom: 2rem;
     }
   }
@@ -115,11 +116,11 @@
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: $themeClrPrimary;
+    color: var(--accent);
     transition: color .3s;
 
     &:hover {
-      color: $gradientEnd;
+      color: var(--accent-hover);
     }
   }
   &__links {
