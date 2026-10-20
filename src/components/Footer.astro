@@ -1,0 +1,38 @@
+---
+import { useTranslations, type Lang } from '../i18n'
+import Icon from './Icon.astro'
+import SocialLinks from './SocialLinks.astro'
+
+interface Props {
+  lang: Lang
+}
+
+const t = useTranslations(Astro.props.lang)
+---
+
+<footer class="main-footer">
+  <div class="main-container">
+    <div class="main-footer__upper">
+      <div class="main-footer__row main-footer__row-1">
+        <h2 class="heading heading-sm main-footer__heading-sm">
+          <span>Social</span>
+        </h2>
+        <div class="main-footer__social-cont">
+          <SocialLinks iconClass="main-footer__icon" />
+        </div>
+      </div>
+      <div class="main-footer__row main-footer__row-2">
+        <h4 class="heading heading-sm text-lt">Augusto Nicola</h4>
+        <p class="main-footer__short-desc">{t('footer.tagline')}</p>
+      </div>
+    </div>
+    <div class="main-footer__lower">
+      <div class="text">
+        {t('footer.credit')}
+        <a rel="noreferrer" target="_blank" href="https://github.com/rammcodes/Dopefolio">Ram Maheshwari</a>, {t('footer.edited')}
+        <a rel="noreferrer" target="_blank" href="https://github.com/AugustoNicola/Portfolio">Augusto Nicola</a> {t('footer.using')} <a rel="noreferrer" target="_blank" href="https://claude.com/claude-code">Claude Code</a>
+      </div>
+      <Icon name="GitHub" />
+    </div>
+  </div>
+</footer>

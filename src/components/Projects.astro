@@ -1,0 +1,42 @@
+---
+import { localizePath, useTranslations, type Lang } from '../i18n'
+import { softwareProjects } from '../data/projects'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+---
+
+<section id="projects" class="projects sec-pad">
+  <div class="main-container">
+    <h2 class="heading heading-sec heading-sec__mb-med" data-fadein style="animation-delay: 0.4s;">
+      <span class="heading-sec__main">{t('projects.title')}</span>
+      <span class="heading-sec__sub">{t('projects.sub')}</span>
+    </h2>
+    <div class="projects__grid">
+      {
+        softwareProjects.map((project, i) => (
+          <a
+            href={localizePath(`/${project.slug}`, lang)}
+            class="project-card"
+            data-fadein
+            style={`animation-delay: ${0.5 + i * 0.1}s;`}
+          >
+            <div class="project-card__img-cont">
+              <img src={project.image} alt={project.title[lang]} class="project-card__img" loading="lazy" />
+            </div>
+            <div class="project-card__body">
+              <p class="eyebrow">{project.kind[lang]}</p>
+              <h3 class="project-card__title">{project.title[lang]}</h3>
+              <p class="project-card__desc">{project.summary[lang]}</p>
+              <span class="arrow-link">{t('projects.more')}</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

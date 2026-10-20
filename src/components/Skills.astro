@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro'
+
+interface Props {
+  skills: string[]
+}
+---
+
+<div class="skills">
+  {
+    Astro.props.skills.map((skill) => (
+      <div class="skills__skill">
+        <Icon name={skill} />
+        <p>{skill}</p>
+      </div>
+    ))
+  }
+</div>

@@ -1,0 +1,91 @@
+---
+import { resolveHref, useTranslations, type Lang } from '../i18n'
+import { currentProjects, thesis } from '../data/research'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+---
+
+<section id="research" class="research sec-pad">
+  <div class="main-container">
+    <h2 class="heading heading-sec heading-sec__mb-bg" data-fadein style="animation-delay: 0.4s;">
+      <span class="heading-sec__main">{t('research.title')}</span>
+      <span class="heading-sec__sub">{t('research.sub')}</span>
+    </h2>
+
+    <article class="thesis" data-fadein style="animation-delay: 0.6s;">
+      <div class="thesis__main">
+        <p class="eyebrow">
+          <span class="badge badge--featured">{t('research.featured')}</span>
+          {thesis.eyebrow[lang]}
+        </p>
+        <h3 class="thesis__title">{thesis.title}</h3>
+        <p class="thesis__subtitle">{thesis.subtitle}</p>
+        <p class="thesis__desc" set:html={thesis.description[lang]} />
+        <div class="thesis__links">
+          {
+            thesis.links.map((link, i) => (
+              <a
+                href={resolveHref(link.href, lang)}
+                target="_blank"
+                rel="noreferrer"
+                class:list={['btn', 'btn--med', 'btn--icon', i === 0 ? 'btn--theme' : 'btn--theme-inv']}
+              >
+                {link.icon && <span class="btn__icon" style={`--icon: url(/assets/png/btn/${link.icon}.png)`} aria-hidden="true" />}
+                {link.label[lang]}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <aside class="thesis__panel">
+        <dl class="thesis__stats">
+          {
+            thesis.stats.map((stat) => (
+              <div class="thesis__stat">
+                <dt class="thesis__stat-value">{stat.value}</dt>
+                <dd class="thesis__stat-label">{stat.label[lang]}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <p class="thesis__advisors">
+          <span>{t('research.advisors')}</span>
+          {thesis.advisors}
+        </p>
+      </aside>
+    </article>
+
+    <h3 class="research__current-title" data-fadein style="animation-delay: 0.6s;">{t('research.current')}</h3>
+    <div class="research__grid">
+      {
+        currentProjects.map((project, i) => (
+          <article class="research-card" data-fadein style={`animation-delay: ${0.7 + i * 0.1}s;`}>
+            <div class="research-card__brand">
+              <img src={project.brand.logo} alt="" class="research-card__logo" />
+              <div>
+                <p class="research-card__brand-name">{project.brand.name}</p>
+                <p class="research-card__brand-full">{project.brand.fullName[lang]}</p>
+              </div>
+            </div>
+            <div class="research-card__body">
+              <p class="eyebrow">
+                <span class="badge badge--ongoing">{t('research.ongoing')}</span>
+                {project.program[lang]}
+              </p>
+              <h4 class="research-card__title">{project.title[lang]}</h4>
+              <p class="research-card__desc" set:html={project.description[lang]} />
+              <a href={resolveHref(project.link.href, lang)} target="_blank" rel="noreferrer" class="arrow-link">
+                {project.link.label[lang]}
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

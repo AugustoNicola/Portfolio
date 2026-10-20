@@ -1,0 +1,815 @@
+@use '../abstracts' as *;
+
+%gradient-bg {
+  background: linear-gradient(var(--gradient-dim), var(--gradient-dim)),
+    linear-gradient(
+      to right,
+      rgba($gradientStart, 0.8),
+      rgba($gradientEnd, 0.8)
+    ),
+    url(/assets/svg/common-bg.svg);
+  background-size: cover;
+  background-position: center;
+}
+
+.home-hero {
+  @extend %gradient-bg;
+  color: #fff;
+  background-size: auto;
+
+  height: 100vh;
+
+  min-height: 80rem;
+  max-height: 120rem;
+  position: relative;
+
+  @include respond(phone) {
+    height: unset;
+    min-height: unset;
+  }
+
+  &__socials {
+    position: absolute;
+    top: 50%;
+    border: 2px solid #eee;
+    border-left: 2px solid #eee;
+    transform: translateY(-50%);
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+  &__mouse-scroll-cont {
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  &__social-icon-link {
+    width: 5rem;
+    display: block;
+    padding: 1.2rem;
+    border-bottom: 2px solid #eee;
+    transition: background .3s;
+
+    &:hover {
+      background: rgba(#fff,.1);
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__social-icon {
+    display: block;
+    width: 100%;
+
+    &--svg {
+      color: #fff;
+      svg {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90rem;
+    width: 92%;
+
+    @include respond(phone) {
+      padding: 19rem 0 13rem 0;
+      margin: auto;
+      position: static;
+      transform: translate(0, 0);
+    }
+  }
+
+  &__tagline {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: .9;
+
+    @include respond(phone) {
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+    }
+  }
+
+  &__info {
+    margin: 3rem auto 0 auto;
+    max-width: 80rem;
+  }
+  &__info-alt {
+    margin-top: 1.5rem;
+    font-size: 1.8rem;
+    opacity: .85;
+  }
+  &__cta {
+    margin-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+
+    .btn--bg {
+      padding: 1.5rem 6rem;
+    }
+  }
+}
+
+.about {
+  background: var(--bg-alt);
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10rem;
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+      grid-gap: 8rem;
+    }
+    &-title {
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
+      @include respond(phone) {
+        font-size: 2.4rem;
+      }
+    }
+    &-details-para {
+      font-size: 1.8rem;
+      color: var(--text-muted);
+      max-width: 60rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      &:last-child {
+        margin-bottom: 4rem;
+      }
+    }
+  }
+  &__skill-subtitle {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text-strong);
+  }
+}
+
+// Skill categories collapse to their first row, with a faded peek at the next one
+// so it's visible that there's more. Heights are measured in About.astro.
+.toolkit {
+  .skills {
+    max-height: var(--full-height, none);
+    overflow: hidden;
+    transition: max-height .45s ease;
+  }
+
+  &--collapsed .skills--overflowing {
+    // First row, the gap below it (skill margin), and a peek of the second row that fades out
+    max-height: calc(var(--row-height) + 1.5rem + 2.4rem);
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(var(--row-height) + 1.5rem), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(var(--row-height) + 1.5rem), transparent);
+  }
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem 2rem;
+    margin-bottom: 3rem;
+
+    .about__content-title {
+      margin-bottom: 0;
+    }
+
+    .toolkit__toggle {
+      margin-top: 0;
+    }
+  }
+
+  &__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem 2.2rem;
+    border: 2px solid var(--accent);
+    border-radius: 50px;
+    background: transparent;
+    color: var(--accent);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background .3s, color .3s;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &:hover {
+      background: $themeClrPrimary;
+      color: #fff;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent-hover);
+      outline-offset: 3px;
+    }
+  }
+
+  &__count {
+    padding: .1rem .8rem;
+    border-radius: 50px;
+    background: var(--accent-soft);
+    font-size: 1.25rem;
+    letter-spacing: .5px;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__toggle:hover &__count {
+    background: rgba(#fff, .25);
+  }
+
+  &__chevron {
+    width: 1.6rem;
+    transition: transform .3s;
+  }
+
+  &__toggle[aria-expanded='true'] &__chevron {
+    transform: rotate(180deg);
+  }
+}
+
+// ---- Research ----
+
+.thesis {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  background: var(--surface);
+  border-radius: $cardRadius;
+  box-shadow: $cardShadow;
+  overflow: hidden;
+
+  @include respond(tab-port) {
+    grid-template-columns: 1fr;
+  }
+
+  &__main {
+    padding: 5rem;
+    border-top: 5px solid $gradientStart;
+    border-image: $themeGradient 1;
+    border-image-slice: 1 0 0 0;
+
+    @include respond(phone) {
+      padding: 3.5rem 2.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 3.6rem;
+    font-weight: 900;
+    line-height: 1.15;
+    @include respond(phone) {
+      font-size: 3rem;
+    }
+  }
+
+  &__subtitle {
+    margin-top: 1rem;
+    font-size: 1.9rem;
+    font-style: italic;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+
+  &__desc {
+    margin-top: 2.5rem;
+    font-size: 1.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+
+    strong {
+      color: var(--text-strong);
+    }
+  }
+
+  &__links {
+    margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    .btn--med {
+      padding-left: 3.5rem;
+      padding-right: 3.5rem;
+    }
+    .btn--theme-inv {
+      padding-left: calc(3.5rem - 2px);
+      padding-right: calc(3.5rem - 2px);
+    }
+
+    @include respond(phone) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__panel {
+    @extend %gradient-bg;
+    color: #fff;
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4rem;
+
+    @include respond(phone) {
+      padding: 4rem 2.5rem;
+    }
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem 2rem;
+  }
+
+  &__stat-value {
+    font-size: 4.6rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  &__stat-label {
+    margin-top: .8rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: .9;
+  }
+
+  &__advisors {
+    padding-top: 3rem;
+    border-top: 1px solid rgba(#fff, .35);
+    font-size: 1.7rem;
+    font-weight: 600;
+
+    span {
+      display: block;
+      margin-bottom: .4rem;
+      font-size: 1.25rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: .85;
+    }
+  }
+}
+
+.research {
+  // Lets the project cards' glow spill over the next section instead of being cut off
+  position: relative;
+  z-index: 1;
+
+  &__current-title {
+    margin: 9rem 0 3.5rem;
+    font-size: 2.8rem;
+    font-weight: 700;
+    @include respond(phone) {
+      margin-top: 7rem;
+      font-size: 2.4rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Styled after .project-card, with the program's logo in place of a screenshot
+.research-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $cardRadius;
+  transition: transform .3s;
+
+  // Blue-violet glow: a blurred copy of the theme gradient behind the card
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: $themeGradient;
+    filter: blur(26px);
+    opacity: var(--glow-opacity);
+    transform: translateY(8px);
+    transition: opacity .4s;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: var(--surface);
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &:hover::before {
+    opacity: .75;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 2.5rem 3rem;
+    border-bottom: 1px solid var(--border);
+    border-radius: $cardRadius $cardRadius 0 0;
+    background: var(--brand-band);
+
+    @include respond(phone) {
+      gap: 1.8rem;
+      padding: 2rem;
+    }
+  }
+
+  &__logo {
+    flex-shrink: 0;
+    width: 9rem;
+    height: 9rem;
+    object-fit: contain;
+    transition: transform .5s;
+
+    @include respond(phone) {
+      width: 7rem;
+      height: 7rem;
+    }
+  }
+
+  &:hover &__logo {
+    transform: scale(1.06);
+  }
+
+  &__brand-name {
+    font-size: 4.4rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: var(--brand-name);
+
+    @include respond(phone) {
+      font-size: 3.6rem;
+    }
+  }
+
+  &__brand-full {
+    margin-top: .8rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-soft);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 3rem;
+
+    @include respond(phone) {
+      padding: 2.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  &__desc {
+    margin: 1.5rem 0 2.5rem;
+    font-size: 1.6rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    flex-grow: 1;
+
+    strong {
+      color: var(--text-strong);
+    }
+  }
+}
+
+// ---- Education & training ----
+
+.training {
+  background: var(--bg-alt);
+}
+
+.timeline {
+  max-width: 90rem;
+  margin: auto;
+
+  &__item {
+    display: grid;
+    grid-template-columns: 18rem 1fr;
+
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__date {
+    padding: .3rem 3rem 0 0;
+    text-align: right;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+
+    @include respond(phone) {
+      padding: 0 0 .8rem 3rem;
+      text-align: left;
+    }
+  }
+
+  &__body {
+    position: relative;
+    padding: 0 0 5rem 3rem;
+    border-left: 2px solid var(--timeline-line);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: .6rem;
+      left: -.8rem;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      background: $themeGradient;
+      box-shadow: 0 0 0 4px var(--bg-alt);
+    }
+  }
+
+  &__item:last-child &__body {
+    padding-bottom: 0;
+    border-left-color: transparent;
+  }
+
+  // On phones the date moves above the entry, so the line and dot move to the whole item.
+  @include respond(phone) {
+    &__item {
+      position: relative;
+      padding: 0 0 4rem 3rem;
+      border-left: 2px solid var(--timeline-line);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: .3rem;
+        left: -.8rem;
+        width: 1.4rem;
+        height: 1.4rem;
+        border-radius: 50%;
+        background: $themeGradient;
+        box-shadow: 0 0 0 4px var(--bg-alt);
+      }
+    }
+    &__item:last-child {
+      padding-bottom: 0;
+      border-left-color: transparent;
+    }
+    &__date {
+      padding: 0 0 .6rem;
+      text-align: left;
+    }
+    &__body {
+      padding: 0;
+      border-left: none;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+
+    a {
+      transition: color .3s;
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
+  &__place {
+    margin-top: .4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  &__desc {
+    margin-top: 1rem;
+    font-size: 1.7rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+}
+
+// ---- Software projects ----
+
+.projects {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem;
+
+    @include respond(tab-port) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: $cardRadius;
+  box-shadow: $cardShadow;
+  overflow: hidden;
+  transition: transform .3s, box-shadow .3s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $cardShadowHover;
+  }
+
+  &__img-cont {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    // Mockups have a transparent background, so show them whole rather than cropped
+    object-fit: contain;
+    transition: transform .5s;
+  }
+
+  &:hover &__img {
+    transform: scale(1.04);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 2.5rem;
+
+    .eyebrow {
+      font-size: 1.2rem;
+      margin-bottom: .8rem;
+    }
+  }
+
+  &__title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  &__desc {
+    margin: 1.2rem 0 2rem;
+    font-size: 1.55rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .arrow-link {
+    font-size: 1.35rem;
+  }
+}
+
+// ---- CV & one-pager ----
+
+.docs {
+  @extend %gradient-bg;
+
+  .heading-sec {
+    color: #fff;
+
+    .heading-sec__main::after {
+      background: #fff;
+    }
+
+    .heading-sec__sub {
+      color: #fff;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 90rem;
+    margin: auto;
+
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+      max-width: 50rem;
+    }
+  }
+}
+
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4.5rem 3.5rem;
+  background: var(--surface);
+  border-radius: $cardRadius;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+  &__icon {
+    width: 5rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 2.6rem;
+    font-weight: 700;
+  }
+
+  &__desc {
+    margin: 1.2rem 0 3rem;
+    font-size: 1.7rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  &__alt {
+    margin-top: 1.8rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $textMuted;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color .3s;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}

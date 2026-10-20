@@ -1,30 +1,6 @@
 [build]
   command = "npm run build"
+  publish = "dist"
 
-[[redirects]]
-  from = "/index.html"
-  to = "/index"
-
-[[redirects]]
-  from = "/insight-noticias.html"
-  to = "/insight-noticias"
-
-[[redirects]]
-  from = "/panaderia-la-esquina.html"
-  to = "/panaderia-la-esquina"
-
-[[redirects]]
-  from = "/harmonium.html"
-  to = "/harmonium"
-  
-[[redirects]]
-  from = "/dotfiles.html"
-  to = "/dotfiles"
-  
-[[redirects]]
-  from = "/bogado.html"
-  to = "/bogado"
-  
-[[redirects]]
-  from = "/*"
-  to = "/404.html"
+[build.environment]
+  NODE_VERSION = "22"

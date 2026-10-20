@@ -1,0 +1,10 @@
+$themeClrPrimary: #2C83D2;
+$gradientStart: #2C93D2;
+$gradientEnd: #6F28BE;
+
+$commonBorderRadius: 5px;
+$cardRadius: 10px;
+$cardShadow: var(--shadow-card);
+$cardShadowHover: var(--shadow-card-hover);
+$textMuted: var(--text-faint);
+$themeGradient: linear-gradient(to right, $gradientStart, $gradientEnd);

@@ -1,0 +1,101 @@
+---
+import { useTranslations, type Lang } from '../i18n'
+import { bio, skillGroups } from '../data/profile'
+import Skills from './Skills.astro'
+import ToolkitToggle from './ToolkitToggle.astro'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const t = useTranslations(lang)
+---
+
+<section id="about" class="about sec-pad">
+  <div class="main-container">
+    <h2 class="heading heading-sec heading-sec__mb-med" data-fadein style="animation-delay: 0.4s;">
+      <span class="heading-sec__main">{t('about.title')}</span>
+    </h2>
+    <div class="about__content">
+      <div class="about__content-main" data-fadein style="animation-delay: 0.6s;">
+        <h3 class="about__content-title">{t('about.whoTitle')}</h3>
+        <div class="about__content-details">
+          {bio()[lang].map((para) => <p class="about__content-details-para" set:html={para} />)}
+        </div>
+      </div>
+      <div class="about__content-skills" data-fadein style="animation-delay: 0.8s;">
+        <div class="toolkit__header">
+          <h3 class="about__content-title">{t('about.skillsTitle')}</h3>
+          <ToolkitToggle lang={lang} />
+        </div>
+        <div class="toolkit" id="toolkit" data-toolkit>
+          {
+            skillGroups.map((group) => (
+              <>
+                <h4 class="about__skill-subtitle">{group.title[lang]}</h4>
+                <Skills skills={group.skills} />
+              </>
+            ))
+          }
+        </div>
+        <ToolkitToggle lang={lang} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { ageOn, parseCalendarDate } from '../utils/age'
+
+  // The age is rendered at build time; recompute it from the visitor's date so it never goes stale.
+  document.querySelectorAll<HTMLElement>('[data-birthdate]').forEach((el) => {
+    el.textContent = String(ageOn(new Date(), parseCalendarDate(el.dataset.birthdate!)))
+  })
+
+  // Without JS every skill stays visible; with it, each category collapses to its first row.
+  const toolkit = document.querySelector<HTMLElement>('[data-toolkit]')!
+  // There are two toggles (beside the title and below the list); both mirror the same state.
+  const toggles = [...document.querySelectorAll<HTMLButtonElement>('[data-toolkit-toggle]')]
+  const groups = [...toolkit.querySelectorAll<HTMLElement>('.skills')]
+  let expanded = false
+
+  function layout() {
+    let hidden = 0
+    for (const group of groups) {
+      const skills = [...group.children] as HTMLElement[]
+      const extra = skills.filter((skill) => skill.offsetTop > skills[0].offsetTop).length
+      hidden += extra
+      group.classList.toggle('skills--overflowing', extra > 0)
+      group.style.setProperty('--row-height', `${skills[0].offsetHeight}px`)
+      group.style.setProperty('--full-height', `${group.scrollHeight}px`)
+    }
+    for (const toggle of toggles) {
+      toggle.hidden = hidden === 0
+      toggle.querySelector('[data-toolkit-count]')!.textContent = expanded ? '' : `+${hidden}`
+    }
+  }
+
+  function setExpanded(value: boolean) {
+    expanded = value
+    toolkit.classList.toggle('toolkit--collapsed', !expanded)
+    for (const toggle of toggles) {
+      toggle.setAttribute('aria-expanded', String(expanded))
+      toggle.querySelector('[data-toolkit-label]')!.textContent =
+        (expanded ? toggle.dataset.labelHide : toggle.dataset.labelShow) ?? ''
+    }
+    layout()
+  }
+
+  toggles.forEach((toggle) => toggle.addEventListener('click', () => setExpanded(!expanded)))
+
+  let frame = 0
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(frame)
+    frame = requestAnimationFrame(layout)
+  })
+  // Web fonts change the box widths, and with them how many skills fit in a row.
+  document.fonts.ready.then(layout)
+
+  setExpanded(false)
+</script>

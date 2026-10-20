@@ -1,0 +1,77 @@
+---
+import { localizePath, useTranslations, type Lang } from '../i18n'
+import type { SoftwareProject } from '../data/projects'
+import Base from '../layouts/Base.astro'
+import Skills from './Skills.astro'
+
+interface Props {
+  lang: Lang
+  project: SoftwareProject
+}
+
+const { lang, project } = Astro.props
+const t = useTranslations(lang)
+const primaryLink = project.website
+  ? { href: project.website, label: t('cs.website') }
+  : project.repo && { href: project.repo, label: t('cs.repo') }
+---
+
+<Base lang={lang} title={`${project.title[lang]} | Augusto Nicola`} description={project.summary[lang]}>
+  <section class="project-cs-hero">
+    <div class="project-cs-hero__content">
+      <p class="project-cs-hero__kind" data-fadein style="animation-delay: 0.3s;">{project.kind[lang]}</p>
+      <h1 class="heading-primary" data-fadein style="animation-delay: 0.4s;">{project.title[lang]}</h1>
+      <div class="project-cs-hero__info">
+        <p class="text-primary" data-fadein style="animation-delay: 0.6s;">{project.summary[lang]}</p>
+      </div>
+      {
+        primaryLink && (
+          <div class="project-cs-hero__cta" data-fadein style="animation-delay: 0.8s;">
+            <a href={primaryLink.href} class="btn btn--bg" target="_blank" rel="noreferrer">{primaryLink.label}</a>
+          </div>
+        )
+      }
+    </div>
+  </section>
+  <section class="project-details">
+    <div class="main-container">
+      <div class="project-details__content">
+        <div class="project-details__showcase-img-cont" data-fadein style="animation-delay: 0.4s;">
+          <img src={project.image} alt={project.title[lang]} class="project-details__showcase-img" />
+        </div>
+        <div class="project-details__content-main">
+          <div class="project-details__desc" data-fadein style="animation-delay: 0.6s;">
+            <h3 class="project-details__content-title">{t('cs.about')}</h3>
+            {project.body[lang].map((para) => <p class="project-details__desc-para" set:html={para} />)}
+          </div>
+          <div class="project-details__tools-used" data-fadein style="animation-delay: 0.8s;">
+            <h3 class="project-details__content-title">{t('cs.tools')}</h3>
+            <Skills skills={project.tools} />
+          </div>
+          {
+            primaryLink && (
+              <div class="project-details__links" data-fadein style="animation-delay: 1s;">
+                <h3 class="project-details__content-title">{t('cs.online')}</h3>
+                {
+                  project.website && (
+                    <a href={project.website} class="btn btn--med btn--theme project-details__links-btn" target="_blank" rel="noreferrer">
+                      {t('cs.website')}
+                    </a>
+                  )
+                }
+                {
+                  project.repo && (
+                    <a href={project.repo} class="btn btn--med btn--theme-inv project-details__links-btn" target="_blank" rel="noreferrer">
+                      {t('cs.repo')}
+                    </a>
+                  )
+                }
+              </div>
+            )
+          }
+          <a href={`${localizePath('/', lang)}#projects`} class="project-details__back">← {t('cs.back')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

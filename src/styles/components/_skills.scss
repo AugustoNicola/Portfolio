@@ -1,0 +1,46 @@
+@use '../abstracts' as *;
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  &__skill {
+    padding: 1rem 2rem;
+    margin-bottom: 1.5rem;
+    margin-right: 1.5rem;
+    font-size: 1.6rem;
+    border-radius: $commonBorderRadius;
+    font-weight: 600;
+    color: var(--text-faint);
+    
+    background-image: linear-gradient(to right, var(--skill-bg) 0%, var(--skill-bg) 25%, var(--skill-bg) 50%, #2B6FD5 75%, #4D51CE 100%);
+    background-size: 400% 400%;
+    background-repeat: no-repeat;
+    transition: background-position .65s, color .65s;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    & svg {
+      color: var(--text-faint);
+      width: 2rem;
+      margin-right: 1rem;
+      transition: all .65s;
+    }
+    & p {
+      transition: all .65s;
+    }
+    
+    &:hover {
+      cursor: pointer;
+      background-position: 100% 100%;
+      color: #ebebeb;
+      
+      & svg, & p {
+        color: #ebebeb
+      }
+    }
+  }
+  
+  
+}
