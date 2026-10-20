@@ -1,6 +1,6 @@
 ---
 import { useTranslations, type Lang } from '../i18n'
-import { age, bio, skillGroups } from '../data/profile'
+import { bio, skillGroups } from '../data/profile'
 import Skills from './Skills.astro'
 import ToolkitToggle from './ToolkitToggle.astro'
 
@@ -21,7 +21,7 @@ const t = useTranslations(lang)
       <div class="about__content-main" data-fadein style="animation-delay: 0.6s;">
         <h3 class="about__content-title">{t('about.whoTitle')}</h3>
         <div class="about__content-details">
-          {bio(age())[lang].map((para) => <p class="about__content-details-para" set:html={para} />)}
+          {bio()[lang].map((para) => <p class="about__content-details-para" set:html={para} />)}
         </div>
       </div>
       <div class="about__content-skills" data-fadein style="animation-delay: 0.8s;">
@@ -46,6 +46,13 @@ const t = useTranslations(lang)
 </section>
 
 <script>
+  import { ageOn, parseCalendarDate } from '../utils/age'
+
+  // The age is rendered at build time; recompute it from the visitor's date so it never goes stale.
+  document.querySelectorAll<HTMLElement>('[data-birthdate]').forEach((el) => {
+    el.textContent = String(ageOn(new Date(), parseCalendarDate(el.dataset.birthdate!)))
+  })
+
   // Without JS every skill stays visible; with it, each category collapses to its first row.
   const toolkit = document.querySelector<HTMLElement>('[data-toolkit]')!
   // There are two toggles (beside the title and below the list); both mirror the same state.

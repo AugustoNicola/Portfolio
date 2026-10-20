@@ -1,16 +1,16 @@
 import type { Localized } from '../i18n'
+import { ageOn, parseCalendarDate } from '../utils/age'
 
 export const SITE_URL = 'https://augustonicola.netlify.app'
 
-const BIRTHDATE = new Date('2003-03-20')
+const BIRTHDATE = '2003-03-20'
 
-/** Age at build time; Netlify rebuilds on every push, so it stays current enough. */
-export function age(now = new Date()): number {
-  const years = now.getFullYear() - BIRTHDATE.getFullYear()
-  const hadBirthday =
-    now.getMonth() > BIRTHDATE.getMonth() ||
-    (now.getMonth() === BIRTHDATE.getMonth() && now.getDate() >= BIRTHDATE.getDate())
-  return hadBirthday ? years : years - 1
+/**
+ * Age wrapped in a span the About section's script recomputes in the browser,
+ * so it stays right between deploys. The build-time value is the no-JS fallback.
+ */
+function ageHtml(): string {
+  return `<span data-birthdate="${BIRTHDATE}">${ageOn(new Date(), parseCalendarDate(BIRTHDATE))}</span>`
 }
 
 export interface Social {
@@ -34,15 +34,15 @@ export const heroText: Localized = {
   es: `Soy <b>Licenciado en Ciencias de la Computación por la Universidad de Buenos Aires</b> y aspirante a <b>investigador en AI Safety</b>; actualmente investigo en los programas <b>SPAR</b> y <b>AI Safety Argentina</b>. Antes de eso, trabajé <b>tres años como desarrollador de software</b>.<br />¡Siempre estoy dispuesto a charlar sobre nuevas oportunidades!`,
 }
 
-export const bio = (years: number): Localized<string[]> => ({
+export const bio = (): Localized<string[]> => ({
   en: [
-    `My name is <strong>Augusto</strong>, I'm ${years} years old and I live in Olivos, Buenos Aires. I'm a <strong>Computer Science graduate</strong> from the <strong>Faculty of Exact and Natural Sciences (UBA)</strong>, and I strongly believe that <strong>AI Safety</strong> is one of the most pressing issues we have to tackle today. That's why I'm building my career towards becoming a <strong>technical AI Safety researcher</strong>.`,
+    `My name is <strong>Augusto</strong>, I'm ${ageHtml()} years old and I live in Olivos, Buenos Aires. I'm a <strong>Computer Science graduate</strong> from the <strong>Faculty of Exact and Natural Sciences (UBA)</strong>, and I strongly believe that <strong>AI Safety</strong> is one of the most pressing issues we have to tackle today. That's why I'm building my career towards becoming a <strong>technical AI Safety researcher</strong>.`,
     `My undergraduate thesis studied <strong>how stable the value systems of LLMs are</strong>, and I'm currently working on research projects on <strong>model psychology</strong> and <strong>interpretability of planning horizons</strong>. My main areas of interest are <strong>Mechanistic Interpretability</strong>, <strong>Evaluation Frameworks</strong>, and <strong>Model Development</strong>. I've also taken several technical courses, keep up with practical self-study, and actively engage with the local AI Safety community.`,
     `Before research, I worked for three years as a <strong>software developer</strong>, mainly on <strong>full-stack web development</strong> and <strong>container orchestration</strong>, with technologies like <strong>PHP</strong>, <strong>Laravel</strong>, <strong>Angular</strong>, <strong>Kubernetes</strong>, <strong>Docker</strong>, and <strong>Prometheus</strong>. I enjoy teamwork, learning new things, teaching, and facing complex challenges.`,
     `I'm <strong>always open to discussing new opportunities</strong>!`,
   ],
   es: [
-    `Me llamo <strong>Augusto</strong>, tengo ${years} años y vivo en Olivos, Gran Buenos Aires. Soy <strong>Licenciado en Ciencias de la Computación</strong> por la <strong>Facultad de Ciencias Exactas y Naturales (UBA)</strong>, y estoy convencido de que la <strong>seguridad de la IA (AI Safety)</strong> es uno de los problemas más urgentes que enfrentamos hoy. Por eso, estoy orientando mi carrera para convertirme en <strong>investigador en Technical AI Safety</strong>.`,
+    `Me llamo <strong>Augusto</strong>, tengo ${ageHtml()} años y vivo en Olivos, Gran Buenos Aires. Soy <strong>Licenciado en Ciencias de la Computación</strong> por la <strong>Facultad de Ciencias Exactas y Naturales (UBA)</strong>, y estoy convencido de que la <strong>seguridad de la IA (AI Safety)</strong> es uno de los problemas más urgentes que enfrentamos hoy. Por eso, estoy orientando mi carrera para convertirme en <strong>investigador en Technical AI Safety</strong>.`,
     `Mi tesis de grado estudió <strong>qué tan estables son los sistemas de valores de los LLMs</strong>, y actualmente trabajo en proyectos de investigación sobre <strong>psicología de modelos</strong> e <strong>interpretabilidad de horizontes de planificación</strong>. Mis principales áreas de interés son la <strong>Interpretabilidad Mecanística</strong>, los <strong>Frameworks de Evaluación</strong> y el <strong>Desarrollo de Modelos</strong>. Además, realicé varios cursos técnicos, sigo estudiando de forma independiente, y participo activamente en la comunidad local de AI Safety.`,
     `Antes de dedicarme a la investigación, trabajé tres años como <strong>desarrollador de software</strong>, principalmente en <strong>desarrollo web full-stack</strong> y <strong>orquestación de contenedores</strong>, con tecnologías como <strong>PHP</strong>, <strong>Laravel</strong>, <strong>Angular</strong>, <strong>Kubernetes</strong>, <strong>Docker</strong> y <strong>Prometheus</strong>. Disfruto de trabajar en equipo, aprender cosas nuevas, enseñar, y enfrentarme a problemas complejos.`,
     `¡<strong>Siempre estoy dispuesto a charlar sobre nuevas oportunidades</strong>!`,
