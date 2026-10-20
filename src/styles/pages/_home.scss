@@ -451,19 +451,18 @@
   }
 
   &__brand {
-    aspect-ratio: 16 / 7;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
-    padding: 2rem 3rem;
+    padding: 2.5rem 3rem;
     border-bottom: 1px solid #eee;
     border-radius: $cardRadius $cardRadius 0 0;
     background: linear-gradient(135deg, rgba($gradientStart, .08), rgba($gradientEnd, .1));
 
     @include respond(phone) {
       gap: 1.8rem;
-      padding: 2.5rem 2rem;
+      padding: 2rem;
     }
   }
 
