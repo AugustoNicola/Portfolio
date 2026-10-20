@@ -167,6 +167,79 @@
   }
 }
 
+// Skill categories collapse to their first row, with a faded peek at the next one
+// so it's visible that there's more. Heights are measured in About.astro.
+.toolkit {
+  .skills {
+    max-height: var(--full-height, none);
+    overflow: hidden;
+    transition: max-height .45s ease;
+  }
+
+  &--collapsed .skills--overflowing {
+    // First row, the gap below it (skill margin), and a peek of the second row that fades out
+    max-height: calc(var(--row-height) + 1.5rem + 2.4rem);
+    -webkit-mask-image: linear-gradient(to bottom, #000 calc(var(--row-height) + 1.5rem), transparent);
+    mask-image: linear-gradient(to bottom, #000 calc(var(--row-height) + 1.5rem), transparent);
+  }
+
+  &__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem 2.2rem;
+    border: 2px solid $themeClrPrimary;
+    border-radius: 50px;
+    background: transparent;
+    color: $themeClrPrimary;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background .3s, color .3s;
+
+    &[hidden] {
+      display: none;
+    }
+
+    &:hover {
+      background: $themeClrPrimary;
+      color: #fff;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $gradientEnd;
+      outline-offset: 3px;
+    }
+  }
+
+  &__count {
+    padding: .1rem .8rem;
+    border-radius: 50px;
+    background: rgba($themeClrPrimary, .12);
+    font-size: 1.25rem;
+    letter-spacing: .5px;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__toggle:hover &__count {
+    background: rgba(#fff, .25);
+  }
+
+  &__chevron {
+    width: 1.6rem;
+    transition: transform .3s;
+  }
+
+  &__toggle[aria-expanded='true'] &__chevron {
+    transform: rotate(180deg);
+  }
+}
+
 // ---- Research ----
 
 .thesis {
@@ -218,26 +291,6 @@
     strong {
       color: #444;
     }
-  }
-
-  &__finding {
-    margin-top: 3rem;
-    padding: .5rem 0 .5rem 2.5rem;
-    border-left: 4px solid $gradientEnd;
-  }
-
-  &__quote {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #333;
-    line-height: 1.4;
-  }
-
-  &__finding-text {
-    margin-top: 1rem;
-    font-size: 1.6rem;
-    color: grey;
-    line-height: 1.7;
   }
 
   &__links {
@@ -335,13 +388,40 @@
 }
 
 .research-card {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   padding: 4rem;
   background: #fff;
-  border: 1px solid #eee;
   border-radius: $cardRadius;
-  box-shadow: $cardShadow;
+
+  // Blue-violet glow: a blurred copy of the theme gradient behind the card
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: $themeGradient;
+    filter: blur(26px);
+    opacity: .5;
+    transform: translateY(8px);
+    transition: opacity .4s;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: #fff;
+  }
+
+  &:hover::before {
+    opacity: .75;
+  }
 
   @include respond(phone) {
     padding: 3rem 2.5rem;

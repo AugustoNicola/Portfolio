@@ -37,6 +37,8 @@ export const ui = {
     'about.title': 'About Me',
     'about.whoTitle': 'Who I am',
     'about.skillsTitle': 'My toolkit',
+    'about.showAll': 'Show all tools',
+    'about.showLess': 'Show less',
     'research.title': 'Research',
     'research.sub':
       'My work focuses on understanding what language models value, how stable those values are, and what their internals reveal about how they plan.',
@@ -70,6 +72,7 @@ export const ui = {
     'footer.tagline': 'Aspiring AI Safety researcher & software developer',
     'footer.credit': 'Based on a template by',
     'footer.edited': 'adapted by',
+    'footer.using': 'using',
     '404.text': "The page you're looking for doesn't exist. It may have been removed, or the address may contain a typo.",
     '404.cta': 'Back home',
   },
@@ -91,6 +94,8 @@ export const ui = {
     'about.title': 'Sobre Mí',
     'about.whoTitle': 'Quién soy',
     'about.skillsTitle': 'Mis herramientas',
+    'about.showAll': 'Ver todas las herramientas',
+    'about.showLess': 'Ver menos',
     'research.title': 'Investigación',
     'research.sub':
       'Mi trabajo busca entender qué valoran los modelos de lenguaje, qué tan estables son esos valores, y qué revelan sus representaciones internas sobre cómo planifican.',
@@ -124,6 +129,7 @@ export const ui = {
     'footer.tagline': 'Aspirante a investigador en AI Safety y desarrollador de software',
     'footer.credit': 'Basado en una plantilla de',
     'footer.edited': 'adaptada por',
+    'footer.using': 'usando',
     '404.text': 'La página solicitada no existe... Es posible que haya sido eliminada, o que la dirección tenga algún error.',
     '404.cta': 'Volver al inicio',
   },

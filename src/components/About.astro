@@ -25,15 +25,77 @@ const t = useTranslations(lang)
       </div>
       <div class="about__content-skills" data-fadein style="animation-delay: 0.8s;">
         <h3 class="about__content-title">{t('about.skillsTitle')}</h3>
-        {
-          skillGroups.map((group) => (
-            <>
-              <h4 class="about__skill-subtitle">{group.title[lang]}</h4>
-              <Skills skills={group.skills} />
-            </>
-          ))
-        }
+        <div class="toolkit" id="toolkit" data-toolkit>
+          {
+            skillGroups.map((group) => (
+              <>
+                <h4 class="about__skill-subtitle">{group.title[lang]}</h4>
+                <Skills skills={group.skills} />
+              </>
+            ))
+          }
+        </div>
+        <button
+          type="button"
+          class="toolkit__toggle"
+          aria-controls="toolkit"
+          aria-expanded="false"
+          data-toolkit-toggle
+          data-label-show={t('about.showAll')}
+          data-label-hide={t('about.showLess')}
+          hidden
+        >
+          <span data-toolkit-label>{t('about.showAll')}</span>
+          <span class="toolkit__count" data-toolkit-count></span>
+          <svg class="toolkit__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Without JS every skill stays visible; with it, each category collapses to its first row.
+  const toolkit = document.querySelector<HTMLElement>('[data-toolkit]')!
+  const toggle = document.querySelector<HTMLButtonElement>('[data-toolkit-toggle]')!
+  const label = toggle.querySelector('[data-toolkit-label]')!
+  const count = toggle.querySelector('[data-toolkit-count]')!
+  const groups = [...toolkit.querySelectorAll<HTMLElement>('.skills')]
+  let expanded = false
+
+  function layout() {
+    let hidden = 0
+    for (const group of groups) {
+      const skills = [...group.children] as HTMLElement[]
+      const extra = skills.filter((skill) => skill.offsetTop > skills[0].offsetTop).length
+      hidden += extra
+      group.classList.toggle('skills--overflowing', extra > 0)
+      group.style.setProperty('--row-height', `${skills[0].offsetHeight}px`)
+      group.style.setProperty('--full-height', `${group.scrollHeight}px`)
+    }
+    toggle.hidden = hidden === 0
+    count.textContent = expanded ? '' : `+${hidden}`
+  }
+
+  function setExpanded(value: boolean) {
+    expanded = value
+    toolkit.classList.toggle('toolkit--collapsed', !expanded)
+    toggle.setAttribute('aria-expanded', String(expanded))
+    label.textContent = (expanded ? toggle.dataset.labelHide : toggle.dataset.labelShow) ?? ''
+    layout()
+  }
+
+  toggle.addEventListener('click', () => setExpanded(!expanded))
+
+  let frame = 0
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(frame)
+    frame = requestAnimationFrame(layout)
+  })
+  // Web fonts change the box widths, and with them how many skills fit in a row.
+  document.fonts.ready.then(layout)
+
+  setExpanded(false)
+</script>

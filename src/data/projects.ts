@@ -52,12 +52,12 @@ export const softwareProjects: SoftwareProject[] = [
     },
     body: {
       en: [
-        `"Insight" is a community news site that lets its users write posts in different categories, react to other articles, comment on them, and even save them. It's one of my most ambitious projects to date, and it was very useful for putting my Laravel and MySQL knowledge into practice for the first time.`,
+        `"Insight" is a community news site that lets its users write posts in different categories, react to other articles, comment on them, and even save them. At the time it was one of my most ambitious projects, and it was very useful for putting my Laravel and MySQL knowledge into practice for the first time.`,
         `To build this project I followed TDD (Test-Driven Development), which means first writing test cases for the functionality the site should offer, and then making those tests pass by writing the actual code. It was my first time using this practice, and I found it very effective in guiding my decisions on how to structure the code.`,
         `The project took me a little over a month, and I really learned how to use the different components of the Laravel framework along with PHP syntax. I also used TailwindCSS to style the pages, so this project let me try out a whole range of new tools, with a result I'm very happy with.`,
       ],
       es: [
-        `"Insight" es un sitio de noticias comunitario que permite a sus usuaries escribir publicaciones según distintas categorías, reaccionar a otras noticias, comentar en ellas e incluso guardarlas. Es uno de mis proyectos más ambiciosos hasta la fecha, y creo que fue muy útil para poder poner en práctica por primera vez mis conocimientos de Laravel y MySQL.`,
+        `"Insight" es un sitio de noticias comunitario que permite a sus usuaries escribir publicaciones según distintas categorías, reaccionar a otras noticias, comentar en ellas e incluso guardarlas. En su momento fue uno de mis proyectos más ambiciosos, y fue muy útil para poder poner en práctica por primera vez mis conocimientos de Laravel y MySQL.`,
         `Para llevar a cabo este proyecto utilicé la metodología de TDD (Test-Driven Development), que implica escribir primero casos de prueba relacionados a la funcionalidad que el sitio debe ofrecer, para luego cumplir dichas pruebas escribiendo el código en sí. Fue la primera vez que usé esta práctica, y considero que fue muy efectiva a la hora de guiar mis decisiones sobre cómo estructurar el código.`,
         `Emprender en este proyecto me tomó algo más de un mes, y pude realmente aprender a aplicar los diferentes componentes del framework Laravel junto con la sintaxis de PHP. También utilicé TailwindCSS para los estilos CSS de las páginas, por lo que en este proyecto pude utilizar un abanico de herramientas nuevas, con un resultado que considero muy satisfactorio.`,
       ],
@@ -77,12 +77,12 @@ export const softwareProjects: SoftwareProject[] = [
     },
     body: {
       en: [
-        `"La Esquina" is the online store of a fictional neighborhood bakery, and I consider it one of my biggest projects so far. It's a full-stack web application that I built end to end, from the visuals to the database.`,
+        `"La Esquina" is the online store of a fictional neighborhood bakery, and at the time it was one of my biggest projects. It's a full-stack web application that I built end to end, from the visuals to the database.`,
         `Some of its most notable features are a fully implemented database connection, a user system with a shopping cart, cookie-based authentication, advanced product filtering, and PayPal integration.`,
         `I took on this project because it seemed ideal to put the MERN stack knowledge I had recently acquired to the test. Although it took me months to complete, I'm very satisfied with the final result.`,
       ],
       es: [
-        `"La Esquina" es la tienda virtual de una panadería de barrio ficticia, y considero que es uno de mis proyectos más grandes hasta el momento. Consiste en una aplicación web full-stack, que creé desde lo visual hasta la base de datos.`,
+        `"La Esquina" es la tienda virtual de una panadería de barrio ficticia, y en su momento fue uno de mis proyectos más grandes. Consiste en una aplicación web full-stack, que creé desde lo visual hasta la base de datos.`,
         `Algunas de sus funcionalidades más destacables son una conexión completamente implementada a base de datos, sistema de usuarios con carrito, autorización de ingreso basada en cookies, filtrado avanzado de productos, e integración con PayPal.`,
         `Decidí encarar este proyecto ya que consideré que era ideal para poner a prueba los conocimientos sobre el stack MERN que había aprendido recientemente. Aunque su realización me llevó meses, estoy muy satisfecho con el resultado final.`,
       ],
@@ -136,7 +136,6 @@ export const softwareProjects: SoftwareProject[] = [
       ],
     },
     tools: ['HTML', 'CSS', 'TailwindCSS', 'Git', 'GitHub'],
-    website: 'https://bogadoservicios.com.ar',
   },
   {
     slug: 'dotfiles',

@@ -26,7 +26,7 @@ export const socials: Social[] = [
   { name: 'GitHub', href: 'https://github.com/AugustoNicola', img: '/assets/png/github-ico.png' },
   { name: 'Email', href: 'mailto:auguston64@gmail.com', img: '/assets/png/mail-ico.png' },
   { name: 'Hugging Face', href: 'https://huggingface.co/anicola', icon: 'huggingface' },
-  { name: 'Stack Overflow', href: 'https://stackoverflow.com/users/11115746/lambda', img: '/assets/png/stack-ico.png' },
+  { name: 'LessWrong', href: 'https://www.lesswrong.com/users/augusto-nicola', img: '/assets/png/lesswrong-ico.png' },
 ]
 
 export const heroText: Localized = {

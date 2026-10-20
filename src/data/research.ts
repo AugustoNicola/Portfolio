@@ -2,6 +2,8 @@ import type { Localized } from '../i18n'
 
 export interface Link {
   label: Localized
+  /** Button icon in /public/assets/png/btn (black-on-transparent, used as a CSS mask). */
+  icon?: string
   /** Internal paths (starting with "/") are localized automatically. */
   href: string | Localized
 }
@@ -18,14 +20,6 @@ export const thesis = {
     en: `Whether language models have real values is contested. My thesis asks a more tractable question: <strong>do they have <em>stable</em> ones?</strong> I crossed ten meaning-preserving prompt perturbations (typos, negation, paraphrase, translation, reversed options...) with fourteen elicited personality profiles, drawn from the Big Five, Schwartz's basic values, and Moral Foundations Theory, and measured how consistent and robust the models' moral choices remained.`,
     es: `Si los modelos de lenguaje tienen valores reales es un tema en discusión. Mi tesis plantea una pregunta más abordable: <strong>¿tienen valores <em>estables</em>?</strong> Crucé diez perturbaciones de prompt que preservan el significado (errores de tipeo, negación, paráfrasis, traducción, opciones invertidas...) con catorce perfiles de personalidad elicitados, basados en los Big Five, los valores básicos de Schwartz y la Teoría de Fundamentos Morales, y medí qué tan consistentes y robustas se mantenían las decisiones morales de los modelos.`,
   },
-  quote: {
-    en: 'The perturbations barely register. The personas do.',
-    es: 'Las perturbaciones apenas se notan. Las personas sí.',
-  },
-  finding: {
-    en: 'Profile elicitation shifted answers far more than paraphrasing did, without reducing consistency: elicited personas behave like coherent alternatives, not degraded versions of the assistant. Model choice mattered more than any perturbation, and capability did not predict stability.',
-    es: 'La elicitación de perfiles modificó las respuestas mucho más que las paráfrasis, sin reducir la consistencia: las personas elicitadas se comportan como alternativas coherentes, no como versiones degradadas del asistente. La elección del modelo importó más que cualquier perturbación, y la capacidad del modelo no predijo su estabilidad.',
-  },
   stats: [
     { value: '561K', label: { en: 'responses', es: 'respuestas' } },
     { value: '6', label: { en: 'models, 3 labs', es: 'modelos, 3 labs' } },
@@ -33,9 +27,9 @@ export const thesis = {
     { value: '10', label: { en: 'prompt perturbations', es: 'perturbaciones' } },
   ] satisfies { value: string; label: Localized }[],
   links: [
-    { label: { en: 'Write-up', es: 'Write-up' }, href: 'https://augustonicola.github.io/Writeup-Value-Systems-in-LLMs/' },
-    { label: { en: 'Code', es: 'Código' }, href: 'https://github.com/AugustoNicola/Value-Systems-in-LLMs-Paraphrasing-and-Profile-Elicitation' },
-    { label: { en: 'Dataset', es: 'Datos' }, href: 'https://huggingface.co/datasets/anicola/value-systems-in-llms-paraphrasing-and-profile-elicitation' },
+    { label: { en: 'Write-up', es: 'Write-up' }, icon: 'lambda', href: 'https://augustonicola.github.io/Writeup-Value-Systems-in-LLMs/' },
+    { label: { en: 'Code', es: 'Código' }, icon: 'github', href: 'https://github.com/AugustoNicola/Value-Systems-in-LLMs-Paraphrasing-and-Profile-Elicitation' },
+    { label: { en: 'Dataset', es: 'Datos' }, icon: 'hf', href: 'https://huggingface.co/datasets/anicola/value-systems-in-llms-paraphrasing-and-profile-elicitation' },
   ] satisfies Link[],
 }
 
@@ -131,6 +125,7 @@ export const training: TrainingItem[] = [
       en: 'AI-oriented curriculum. My undergraduate thesis on LLM evals and value systems was my first step into AI Safety research.',
       es: 'Orientación en Inteligencia Artificial. Mi tesis de grado sobre evals y sistemas de valores en LLMs fue mi primer paso en la investigación en AI Safety.',
     },
+    href: 'https://computacion.dc.uba.ar/',
   },
   {
     from: 2025,
@@ -143,7 +138,7 @@ export const training: TrainingItem[] = [
     href: 'https://bluedot.org/',
   },
   {
-    from: 2023,
+    from: 2022,
     to: 2025,
     title: { en: 'Jr. Full-stack Developer & Sysadmin', es: 'Jr. Full-stack Developer y Sysadmin' },
     place: { en: 'WillDom · Part-time', es: 'WillDom · Tiempo medio' },

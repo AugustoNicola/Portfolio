@@ -13,7 +13,7 @@ const { lang, project } = Astro.props
 const t = useTranslations(lang)
 const primaryLink = project.website
   ? { href: project.website, label: t('cs.website') }
-  : { href: project.repo!, label: t('cs.repo') }
+  : project.repo && { href: project.repo, label: t('cs.repo') }
 ---
 
 <Base lang={lang} title={`${project.title[lang]} | Augusto Nicola`} description={project.summary[lang]}>
@@ -24,9 +24,13 @@ const primaryLink = project.website
       <div class="project-cs-hero__info">
         <p class="text-primary" data-fadein style="animation-delay: 0.6s;">{project.summary[lang]}</p>
       </div>
-      <div class="project-cs-hero__cta" data-fadein style="animation-delay: 0.8s;">
-        <a href={primaryLink.href} class="btn btn--bg" target="_blank" rel="noreferrer">{primaryLink.label}</a>
-      </div>
+      {
+        primaryLink && (
+          <div class="project-cs-hero__cta" data-fadein style="animation-delay: 0.8s;">
+            <a href={primaryLink.href} class="btn btn--bg" target="_blank" rel="noreferrer">{primaryLink.label}</a>
+          </div>
+        )
+      }
     </div>
   </section>
   <section class="project-details">
@@ -44,23 +48,27 @@ const primaryLink = project.website
             <h3 class="project-details__content-title">{t('cs.tools')}</h3>
             <Skills skills={project.tools} />
           </div>
-          <div class="project-details__links" data-fadein style="animation-delay: 1s;">
-            <h3 class="project-details__content-title">{t('cs.online')}</h3>
-            {
-              project.website && (
-                <a href={project.website} class="btn btn--med btn--theme project-details__links-btn" target="_blank" rel="noreferrer">
-                  {t('cs.website')}
-                </a>
-              )
-            }
-            {
-              project.repo && (
-                <a href={project.repo} class="btn btn--med btn--theme-inv project-details__links-btn" target="_blank" rel="noreferrer">
-                  {t('cs.repo')}
-                </a>
-              )
-            }
-          </div>
+          {
+            primaryLink && (
+              <div class="project-details__links" data-fadein style="animation-delay: 1s;">
+                <h3 class="project-details__content-title">{t('cs.online')}</h3>
+                {
+                  project.website && (
+                    <a href={project.website} class="btn btn--med btn--theme project-details__links-btn" target="_blank" rel="noreferrer">
+                      {t('cs.website')}
+                    </a>
+                  )
+                }
+                {
+                  project.repo && (
+                    <a href={project.repo} class="btn btn--med btn--theme-inv project-details__links-btn" target="_blank" rel="noreferrer">
+                      {t('cs.repo')}
+                    </a>
+                  )
+                }
+              </div>
+            )
+          }
           <a href={`${localizePath('/', lang)}#projects`} class="project-details__back">← {t('cs.back')}</a>
         </div>
       </div>

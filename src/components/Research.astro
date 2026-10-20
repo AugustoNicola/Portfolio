@@ -26,10 +26,6 @@ const t = useTranslations(lang)
         <h3 class="thesis__title">{thesis.title}</h3>
         <p class="thesis__subtitle">{thesis.subtitle}</p>
         <p class="thesis__desc" set:html={thesis.description[lang]} />
-        <blockquote class="thesis__finding">
-          <p class="thesis__quote">“{thesis.quote[lang]}”</p>
-          <p class="thesis__finding-text">{thesis.finding[lang]}</p>
-        </blockquote>
         <div class="thesis__links">
           {
             thesis.links.map((link, i) => (
@@ -37,8 +33,9 @@ const t = useTranslations(lang)
                 href={resolveHref(link.href, lang)}
                 target="_blank"
                 rel="noreferrer"
-                class:list={['btn', 'btn--med', i === 0 ? 'btn--theme' : 'btn--theme-inv']}
+                class:list={['btn', 'btn--med', 'btn--icon', i === 0 ? 'btn--theme' : 'btn--theme-inv']}
               >
+                {link.icon && <span class="btn__icon" style={`--icon: url(/assets/png/btn/${link.icon}.png)`} aria-hidden="true" />}
                 {link.label[lang]}
               </a>
             ))

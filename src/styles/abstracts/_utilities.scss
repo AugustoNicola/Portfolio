@@ -120,6 +120,22 @@
     font-size: 1.6rem;
   }
 
+  // Icon masks are black-on-transparent images, painted in the button's text color.
+  &--icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  &__icon {
+    flex-shrink: 0;
+    width: 1.9rem;
+    height: 1.9rem;
+    background-color: currentColor;
+    -webkit-mask: var(--icon) center / contain no-repeat;
+    mask: var(--icon) center / contain no-repeat;
+  }
+
   &--theme {
     background-image: linear-gradient(to right, $themeClrPrimary 0%, $themeClrPrimary 25%, $themeClrPrimary 50%, #4855CF 75%, #6A2FC1 100%);
     color: #fff;
