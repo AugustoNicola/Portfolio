@@ -34,27 +34,34 @@ export const thesis = {
 }
 
 export interface Project {
+  /** Program branding shown in the card header. */
+  brand: {
+    logo: string
+    name: string
+    fullName: Localized
+  }
+  /** Cohort or year, shown next to the "Ongoing" badge. */
   program: Localized
   title: Localized
   description: Localized
-  tags: Localized<string[]>
   link: Link
 }
 
 export const currentProjects: Project[] = [
   {
+    brand: {
+      logo: '/assets/logos/spar.png',
+      name: 'SPAR',
+      fullName: { en: 'Supervised Program for Alignment Research', es: 'Supervised Program for Alignment Research' },
+    },
     program: {
-      en: 'SPAR · Fall 2026',
-      es: 'SPAR · Cohorte de Otoño 2026',
+      en: 'Fall 2026 cohort',
+      es: 'Cohorte de otoño 2026',
     },
     title: { en: 'Planning Temporal Manifolds', es: 'Planning Temporal Manifolds' },
     description: {
       en: `Can we read <strong>how far ahead a language model is planning</strong> directly from its activations? Prior work found that time horizons, from seconds to centuries, form an ordinal manifold in the residual stream during single decisions. This project tests whether that geometry persists through multi-step planning: a first step toward <strong>monitoring and steering the planning horizon of AI agents</strong>, relevant to both myopic and scheming failures.`,
       es: `¿Es posible leer <strong>qué tan a futuro está planificando un modelo de lenguaje</strong> directamente desde sus activaciones? Trabajos previos encontraron que los horizontes temporales, de segundos a siglos, forman una variedad ordinal en el residual stream durante decisiones individuales. Este proyecto pone a prueba si esa geometría persiste durante la planificación en varios pasos: un primer paso hacia <strong>monitorear y dirigir el horizonte de planificación de agentes de IA</strong>, relevante tanto para fallas miopes como para el <em>scheming</em>.`,
-    },
-    tags: {
-      en: ['Mechanistic interpretability', 'Activation geometry', 'Planning'],
-      es: ['Interpretabilidad mecanística', 'Geometría de activaciones', 'Planificación'],
     },
     link: {
       label: { en: 'Project proposal', es: 'Propuesta del proyecto' },
@@ -62,9 +69,14 @@ export const currentProjects: Project[] = [
     },
   },
   {
+    brand: {
+      logo: '/assets/logos/aisar.svg',
+      name: 'AISAR',
+      fullName: { en: 'AI Safety Argentina Scholarship', es: 'Beca AI Safety Argentina' },
+    },
     program: {
-      en: 'AI Safety Argentina (AISAR) Scholarship · 2026',
-      es: 'Beca AI Safety Argentina (AISAR) · 2026',
+      en: '2026 scholarship',
+      es: 'Beca 2026',
     },
     title: {
       en: 'Model Psychology & Preference Coherence',
@@ -73,10 +85,6 @@ export const currentProjects: Project[] = [
     description: {
       en: `Experiments to better model <strong>LLM psychology</strong>: is a model a single persona acting under different roles, a persona-selection mechanism, or a shoggoth with masks? I study <strong>how coherent and variable model preferences are</strong> at different levels: profile elicitation in pretrained vs. helpful-only models, whether the persona writing the chain of thought differs from the one writing the answer, and the gap between <strong>stated preferences and actual behavior</strong> when choices have real consequences.`,
       es: `Experimentos para modelar mejor la <strong>psicología de los LLMs</strong>: ¿un modelo es una única persona que actúa bajo distintos roles, un mecanismo de selección de personas, o un shoggoth con máscaras? Estudio <strong>la coherencia y variabilidad de las preferencias de los modelos</strong> a distintos niveles: elicitación de perfiles en modelos pretrained frente a modelos helpful-only, si la persona que escribe el chain of thought es distinta a la que escribe la respuesta, y la brecha entre <strong>preferencias declaradas y comportamiento real</strong> cuando las decisiones tienen consecuencias concretas.`,
-    },
-    tags: {
-      en: ['Model psychology', 'Evals', 'Chain of thought'],
-      es: ['Psicología de modelos', 'Evals', 'Chain of thought'],
     },
     link: {
       label: { en: 'About AISAR', es: 'Sobre AISAR' },

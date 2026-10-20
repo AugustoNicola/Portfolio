@@ -65,18 +65,24 @@ const t = useTranslations(lang)
       {
         currentProjects.map((project, i) => (
           <article class="research-card" data-fadein style={`animation-delay: ${0.7 + i * 0.1}s;`}>
-            <p class="eyebrow research-card__program">
-              <span class="badge badge--ongoing">{t('research.ongoing')}</span>
-              {project.program[lang]}
-            </p>
-            <h4 class="research-card__title">{project.title[lang]}</h4>
-            <p class="research-card__desc" set:html={project.description[lang]} />
-            <ul class="tags">
-              {project.tags[lang].map((tag) => <li class="tags__tag">{tag}</li>)}
-            </ul>
-            <a href={resolveHref(project.link.href, lang)} target="_blank" rel="noreferrer" class="arrow-link">
-              {project.link.label[lang]}
-            </a>
+            <div class="research-card__brand">
+              <img src={project.brand.logo} alt="" class="research-card__logo" />
+              <div>
+                <p class="research-card__brand-name">{project.brand.name}</p>
+                <p class="research-card__brand-full">{project.brand.fullName[lang]}</p>
+              </div>
+            </div>
+            <div class="research-card__body">
+              <p class="eyebrow">
+                <span class="badge badge--ongoing">{t('research.ongoing')}</span>
+                {project.program[lang]}
+              </p>
+              <h4 class="research-card__title">{project.title[lang]}</h4>
+              <p class="research-card__desc" set:html={project.description[lang]} />
+              <a href={resolveHref(project.link.href, lang)} target="_blank" rel="noreferrer" class="arrow-link">
+                {project.link.label[lang]}
+              </a>
+            </div>
           </article>
         ))
       }

@@ -408,14 +408,16 @@
   }
 }
 
+// Styled after .project-card, with the program's logo in place of a screenshot
 .research-card {
   position: relative;
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  padding: 4rem;
   background: #fff;
+  border: 1px solid #eee;
   border-radius: $cardRadius;
+  transition: transform .3s;
 
   // Blue-violet glow: a blurred copy of the theme gradient behind the card
   &::before {
@@ -440,23 +442,89 @@
     background: #fff;
   }
 
+  &:hover {
+    transform: translateY(-5px);
+  }
+
   &:hover::before {
     opacity: .75;
   }
 
-  @include respond(phone) {
-    padding: 3rem 2.5rem;
+  &__brand {
+    aspect-ratio: 16 / 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 2rem 3rem;
+    border-bottom: 1px solid #eee;
+    border-radius: $cardRadius $cardRadius 0 0;
+    background: linear-gradient(135deg, rgba($gradientStart, .08), rgba($gradientEnd, .1));
+
+    @include respond(phone) {
+      gap: 1.8rem;
+      padding: 2.5rem 2rem;
+    }
+  }
+
+  &__logo {
+    flex-shrink: 0;
+    width: 9rem;
+    height: 9rem;
+    object-fit: contain;
+    transition: transform .5s;
+
+    @include respond(phone) {
+      width: 7rem;
+      height: 7rem;
+    }
+  }
+
+  &:hover &__logo {
+    transform: scale(1.06);
+  }
+
+  &__brand-name {
+    font-size: 4.4rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: #0b1f36;
+
+    @include respond(phone) {
+      font-size: 3.6rem;
+    }
+  }
+
+  &__brand-full {
+    margin-top: .8rem;
+    max-width: 24rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #555;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 3rem;
+
+    @include respond(phone) {
+      padding: 2.5rem;
+    }
   }
 
   &__title {
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: 700;
     line-height: 1.25;
   }
 
   &__desc {
-    margin: 2rem 0 2.5rem;
-    font-size: 1.7rem;
+    margin: 1.5rem 0 2.5rem;
+    font-size: 1.6rem;
     color: grey;
     line-height: 1.7;
     flex-grow: 1;
@@ -464,10 +532,6 @@
     strong {
       color: #444;
     }
-  }
-
-  .tags {
-    margin-bottom: 3rem;
   }
 }
 

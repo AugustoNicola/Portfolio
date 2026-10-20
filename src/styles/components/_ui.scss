@@ -49,21 +49,6 @@
   100% { box-shadow: 0 0 0 0 rgba(#1f9d55, 0); }
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .8rem;
-
-  &__tag {
-    padding: .4rem 1.2rem;
-    border-radius: $commonBorderRadius;
-    background: rgba(#999, 0.15);
-    color: #666;
-    font-size: 1.35rem;
-    font-weight: 600;
-  }
-}
-
 .arrow-link {
   display: inline-block;
   font-size: 1.5rem;
